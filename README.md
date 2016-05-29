@@ -16,10 +16,12 @@ Program powinien posiadać możliwość edycji i usuwania  pytań i odpowiedzi.
 ## Specyfikacja protokołu
 ###Informacje ogólne
 Protokół aplikacji Quizvel bazuje na szeroko stosownym i opisanym w literaturze bezstanowy protokole HTTP/1.1.
-Protokół HTTP to protokół poziomu aplikacji dla hipermedialnych systemów informatycznych. W obu wersjach jest to protokół bezstanowy, tzn. ani serwer (ani klient) nie przechowuje informacji o tym, jakie były wcześniej zapytania pomiędzy określonym serwerem i klientem oraz nie posiada stanu wewnętrznego. Wykorzystuje wyłącznie protokół TCP do komunikacji klient-serwer. W najczęstszej konfiguracji działa na porcie 80. 
-Protokół HTTP jest protokołem żądania & odpowiedzi. Klient wysyła żądanie do serwera w postaci metody żądania, URI i wersji protokołu, a następnie komunikatu podobnego do wiadomości MIME  (ang. *Multipurpose Internet Mail Extensions*) zawierającego modyfikatory żądania, metainformacje o docelowym serwerze i  kliencie (dalej: *nagłówki*, ang. *headers*) oraz ewentualnie zawartość ciała (ang.*body*).
 
-W przypadku mojego protokołu przyjąłem częściową implementacje protokołu HTTP, ale kompatybilną z popularnymi klientami tego protokołu, a ponadto ciało ma zawsze postać struktury JSON.
+Protokół HTTP to protokół poziomu aplikacji dla hipermedialnych systemów informatycznych. W obu wersjach jest to protokół bezstanowy, tzn. ani serwer (ani klient) nie przechowuje informacji o tym, jakie były wcześniej zapytania pomiędzy określonym serwerem i klientem oraz nie posiada stanu wewnętrznego. Wykorzystuje wyłącznie protokół TCP do komunikacji klient-serwer. W najczęstszej konfiguracji działa na porcie 80. 
+
+Protokół HTTP jest protokołem żądania & odpowiedzi. Klient wysyła żądanie do serwera w postaci metody żądania, URI i wersji protokołu, a następnie komunikatu podobnego do wiadomości MIME  (ang. *Multipurpose Internet Mail Extensions*) zawierającego modyfikatory żądania, metainformacje o docelowym serwerze i  kliencie (dalej: *nagłówki*, ang. *headers*) oraz ewentualnie - oddzielone pustym wierszem – zawartość ciała (ang.*body*). W odpowiedzi otrzymuje kod statusu odpowiedzi, metainformacje i ciało oddzielone poprzez pusty wiersz.
+
+W przypadku mojego protokołu przyjąłem częściową implementacje protokołu HTTP, ale kompatybilną z popularnymi klientami tego protokołu, a ponadto zakładam, że ciało ma zawsze postać struktury JSON.
 
 Przykładowe żądanie bez dodatkowych informacji przedstawia:
     GET /sciezka HTTP/1.1
