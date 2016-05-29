@@ -24,8 +24,7 @@ import view.UserPromoteView;
 import view.UserRegisterView;
 
 public class MultiServer {
-	public static final int PORT = 2000;
-	Vector<ClientThread> v = new Vector<ClientThread>();
+	public static final int PORT = Config.LISTING_PORT;
 	private ServerSocket server;
 
 	public MultiServer() {
