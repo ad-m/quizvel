@@ -135,7 +135,7 @@ Obiekt typu „Question” gromadzi informacje o indywidualnym pytaniu. Jest to 
 
  - ```text``` (łańcuch znaków) – treść pytania  (łańcuch znaków),
  - ```correctId``` (łańcuch znaków) – numer poprawnej odpowiedzi (wartość liczbowa),
- - ```choices``` – lista obiektów typu Choices,
+ - ```choices``` – lista obiektów typu „Choice”,
 
 #### Choice
 Obiekt typu „Choice” gromadzi informacje o indywidualnej opcji wyboru dla zadanego pytania. Jest to jednocześnie obiekt JSON zawierający klucze:
@@ -229,7 +229,7 @@ Zwraca informacje dodatkowe w postaci słownika o kluczach:
 Punkt odpwoeidzialny za przesłanie listy użytkowników. Wykorzystuje UserListView.
 Zwraca informacje dodatkowe w postaci słownika o kluczach:
 
- - ```users``` (łańcuch znaków) – lista obiektów typu Users.
+ - ```users``` (łańcuch znaków) – lista obiektów typu „User”.
 
 #### GET — ^/~save
 Punkt odpowiedzialny za zapisanie baz danych do pliku. Ma charakter administracyjny dla zapewnienia trwałości gromadzonych danych przez aplikacje. Wykorzystuje SaveJSONView. 
@@ -242,7 +242,7 @@ Zwraca informacje dodatkowe w postaci słownika o kluczach:
 
 #### POST — ^/question
 Punkt odpowiedzialny za zapisanie pytania i odpowiadających mu odpowiedzi. Ma charakter administracyjny i wymaga uwierzytelnienia na konto administratora. Wykorzystuje QuestionCreateView.
-Przyjmuje informacje dodatkowe w postaci obiektu typu Question.
+Przyjmuje informacje dodatkowe w postaci obiektu typu „Question”.
 Zwraca informacje dodatkowe w postaci słownika o kluczach:
 
  - ```status``` (łańcuch znaków) – wartość „OK”  (łańcuch znaków)  określający status zapisu danych,
@@ -252,11 +252,11 @@ Zwraca informacje dodatkowe w postaci słownika o kluczach:
 Punkt odpowiedzialny za sporządzenie listy pytań. Ma charakter administracyjny i wymaga uwierzytelnienia na konto administratora. Wykorzystuje QuestionListView.
 Zwraca infromacje dodatkowe w postaci słownika o kluczach:
 
- - ```questions``` (łańcuch znaków) – lista obiektów typu Question,
+ - ```questions``` (łańcuch znaków) – lista obiektów typu „Question”,
 
 #### GET — ^/question/([0-9]+)
 Punkt odpowiedzialny za sporządzenie listy pytań. W adresie przyjmuje numer pytania, które będzie pobrane. Ma charakter administracyjny i wymaga uwierzytelnienia na konto administratora. Wykorzystuje QuestionGetView.
-Zwraca informacje dodatkowe w postaci obiektu typu Question.
+Zwraca informacje dodatkowe w postaci obiektu typu „Question”.
 
 #### POST — ^/question/([0-9]+)
 Punkt odpowiedzialny za aktualizacje pytania. W adresie przyjmuje numer pytania, które będzie zaktualizowane. Ma charakter administracyjny i wymaga uwierzytelnienia na konto administratora.  Wykorzystuje QuestionUpdateView.
@@ -274,7 +274,7 @@ Zwraca informacje dodatkowe w postaci słownika o kluczach:
 Punkt odpowiedzialny za przydzielenie pytań dla danego użytkownika. Wymaga uwierzytelnienia. Wykorzystuje SurveyGetView.
 Zwraca informacje dodatkowe w postaci słownika o kluczach:
 
- - ```questions``` (łańcuch znaków) – listy zadanych obiektów typu Question.
+ - ```questions``` (łańcuch znaków) – listy zadanych obiektów typu „Question”.
 
 #### POST — ^/survey
 Punkt odpowiedzialny za wetyfikacje odpowiedzi dla danego użytkownika. Wykorzystuje SurveyCheckView.
