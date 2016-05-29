@@ -7,7 +7,8 @@ import java.util.Arrays;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class User{
+public class User extends DataModel{
+	private static final long serialVersionUID = -406316548387009043L;
 	private String username;
 	private byte[] hash;
 	private boolean admin;
@@ -79,5 +80,10 @@ public class User{
 			e.printStackTrace();
 		}
 		return json;
+	}
+
+	@Override
+	public DataModel fromJSON(JSONObject obj) {
+		return new User(obj.getString("username"), obj.getString("password"));
 	}
 }

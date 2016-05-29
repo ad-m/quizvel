@@ -1,13 +1,12 @@
 package model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Question extends DataModel implements Serializable, Cloneable {
+public class Question extends DataModel implements Cloneable {
 	private static final long serialVersionUID = 8291807221891888120L;
 	String text;
 	private ArrayList<Choice> choices;

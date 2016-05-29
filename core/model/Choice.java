@@ -1,14 +1,9 @@
 package model;
 
-import java.io.Serializable;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Choice extends DataModel implements Cloneable, Serializable {
-	/**
-	 * 
-	 */
+public class Choice extends DataModel implements Cloneable {
 	private static final long serialVersionUID = 6022085637930721558L;
 	private String text;
 
@@ -45,14 +40,7 @@ public class Choice extends DataModel implements Cloneable, Serializable {
 
 	@Override
 	public Choice fromJSON(JSONObject obj) {
-		Choice niu = null;
-		try {
-			niu = (Choice) this.clone();
-			niu.setText(obj.getString("text"));
-		} catch (CloneNotSupportedException | JSONException e) {
-			e.printStackTrace();
-		}
-		return niu;
+		return new Choice(obj.getString("text"));
 	}
 	
 	public boolean equals(Choice obj){
