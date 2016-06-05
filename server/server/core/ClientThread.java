@@ -1,0 +1,46 @@
+package server.core;
+
+import java.io.IOException;
+import java.net.Socket;
+
+import core.http.HTTPStream;
+import core.http.Request;
+import core.http.Response;
+import server.router.Router;
+import server.view.AbstractView;
+
+class ClientThread extends Thread{
+	
+	Socket socket;
+	private HTTPStream http;
+	ClientThread(Socket socket)throws IOException{
+		this.socket = socket;
+		this.http = new HTTPStream(this.socket);
+	}
+	
+	public void run(){
+		try {
+			process();
+			socket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void process() throws IOException {
+		Request request = this.http.readRequest();
+		if(request == null){
+			http.write(new Response("Malformed request", 500));
+			return;
+		};
+
+		AbstractView view = Router.getInstance().find(request);
+		if(view == null){
+			http.write(new Response("Page not found", 404));
+			return;
+		};
+
+		http.write(view.getResponse(request));
+	}
+}
