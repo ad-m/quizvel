@@ -20,18 +20,19 @@ public class AbstractDAO {
 	}
 
 	public Response send_request(Request request, User user) throws UnknownHostException, IOException {
-		Socket socket = new Socket(Config.SERVER_HOST, Config.SERVER_PORT);
-		HTTPStream http = new HTTPStream(socket);
-		if(user != null){
-			request.setUser(user.getUsername(), user.getPassword());
+		;
+		Response response = null;
+		try (HTTPStream http = new HTTPStream(new Socket(Config.SERVER_HOST, Config.SERVER_PORT))) {
+			if (user != null) {
+				request.setUser(user.getUsername(), user.getPassword());
+			}
+			http.write(request);
+			response = http.readResponse();
 		}
-		http.write(request);
-		Response response = http.readResponse();
-		socket.close();
 		return response;
 	}
 
-	public HTTPObject send_request(Request request) throws UnknownHostException, IOException{
+	public HTTPObject send_request(Request request) throws UnknownHostException, IOException {
 		return send_request(request, null);
 	}
 
