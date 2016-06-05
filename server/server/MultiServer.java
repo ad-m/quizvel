@@ -1,15 +1,14 @@
 package server;
 
-import http.Request.Method;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Vector;
+
+import http.Request.Method;
+import router.RegexpRoute;
 import router.Router;
 import storage.QuestionStorage;
 import storage.UserStorage;
-import router.RegexpRoute;
 import view.OKView;
 import view.QuestionCreateView;
 import view.QuestionDeleteView;
