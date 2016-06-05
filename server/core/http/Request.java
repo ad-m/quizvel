@@ -38,6 +38,10 @@ public class Request implements HTTPObject {
 		this(url, method, body, new HashMap<String, String>());
 	}
 
+	public Request(String url, String method, JSONObject json) {
+		this(url, method, json.toString(), new HashMap<String, String>());
+	}
+
 	public Request(String url, String method) {
 		this(url, method, "");
 	}
@@ -79,9 +83,9 @@ public class Request implements HTTPObject {
 	public String toString() {
 		return "HTTPRequest [method=" + method + ", url=" + url + "]";
 	}
-	
-	public byte[] getBytes(){
-		StringBuffer content = new StringBuffer();		
+
+	public byte[] getBytes() {
+		StringBuffer content = new StringBuffer();
 		content.append(this.method);
 		content.append(" ");
 		content.append(this.url);
@@ -91,13 +95,12 @@ public class Request implements HTTPObject {
 		for (Map.Entry<String, String> entry : this.headers.entrySet()) {
 			content.append(entry.getKey());
 			content.append(": ");
-		    content.append(entry.getValue());
-		    content.append("\n");
+			content.append(entry.getValue());
+			content.append("\n");
 		}
 		content.append("Content-Length: " + this.body.length());
 		content.append("\n\n");
 		content.append(this.body);
-		System.out.print(content.toString());
 		return content.toString().getBytes();
 	}
 

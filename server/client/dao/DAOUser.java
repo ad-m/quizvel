@@ -1,10 +1,10 @@
 package client.dao;
 
-public class User {
+public class DAOUser {
 	private String username;
 	private String password;
 	
-	public User(String username, String password) {
+	public DAOUser(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;

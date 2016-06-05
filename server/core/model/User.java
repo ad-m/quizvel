@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class User extends DataModel{
+public class User extends DataModel {
 	private static final long serialVersionUID = -406316548387009043L;
 	private String username;
 	private byte[] hash;
@@ -17,12 +17,23 @@ public class User extends DataModel{
 		return username;
 	}
 
+	public User(String username) {
+
+	}
+
+	public User(JSONObject obj) {
+		this.username = obj.getString("username");
+		if (obj.has("password")) {
+			this.setPassword(obj.getString("password"));
+		}
+	};
+
 	public boolean checkPassword(String password) {
 		try {
-			 MessageDigest md = MessageDigest.getInstance("SHA");
-			 md.update(password.getBytes());
-			 byte[] hash = md.digest();
-			 return Arrays.equals(hash, this.hash);
+			MessageDigest md = MessageDigest.getInstance("SHA");
+			md.update(password.getBytes());
+			byte[] hash = md.digest();
+			return Arrays.equals(hash, this.hash);
 		} catch (NoSuchAlgorithmException e) {
 			return false;
 		}
@@ -30,7 +41,7 @@ public class User extends DataModel{
 
 	public boolean setPassword(String password) {
 		try {
-			MessageDigest md= MessageDigest.getInstance("SHA");
+			MessageDigest md = MessageDigest.getInstance("SHA");
 			md.update(password.getBytes());
 			this.hash = md.digest();
 			return true;
@@ -38,13 +49,12 @@ public class User extends DataModel{
 			return false;
 		}
 	}
-	
+
 	public User(String username, String password) {
 		this.username = username;
 		this.setPassword(password);
 		this.admin = false;
 	}
-	
 
 	public boolean isAdmin() {
 		return admin;
@@ -60,14 +70,14 @@ public class User extends DataModel{
 	}
 
 	public static void main(String[] args) {
-	
+
 		User u1 = new User("user1", "good");
 		assert u1.checkPassword("good") == true;
 		assert u1.checkPassword("bad") == false;
 		assert u1.setPassword("new") == true;
 		assert u1.checkPassword("good") == false;
 		assert u1.checkPassword("new") == true;
-		
+
 	}
 
 	public JSONObject toJSON() {
@@ -80,10 +90,5 @@ public class User extends DataModel{
 			e.printStackTrace();
 		}
 		return json;
-	}
-
-	@Override
-	public DataModel fromJSON(JSONObject obj) {
-		return new User(obj.getString("username"), obj.getString("password"));
 	}
 }
