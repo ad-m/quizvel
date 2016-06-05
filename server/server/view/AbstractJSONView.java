@@ -3,13 +3,12 @@ package server.view;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import core.http.HTTPObject;
 import core.http.Request;
 import core.http.Response;
 
 public abstract class AbstractJSONView extends AbstractView {
-	
-	public HTTPObject getResponse(Request request) {
+
+	public Response getResponse(Request request) {
 		try {
 			return new Response(this.getJSON(request).toString());
 		} catch (JSONException e) {

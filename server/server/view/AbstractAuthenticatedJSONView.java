@@ -3,14 +3,13 @@ package server.view;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import core.http.HTTPObject;
 import core.http.Request;
 import core.http.Response;
 import core.model.User;
 
 public abstract class AbstractAuthenticatedJSONView extends AbstractAuthenticatedView {
-	
-	public HTTPObject getResponse(Request request, User user) {
+
+	public Response getResponse(Request request, User user) {
 		try {
 			return new Response(this.getJSON(request, user).toString());
 		} catch (JSONException e) {

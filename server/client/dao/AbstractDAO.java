@@ -15,7 +15,8 @@ public class AbstractDAO {
 		super();
 	}
 
-	public Response send_request(Request request, DAOUser user) throws UnknownHostException, IOException {
+	public Response send_request(Request request, DAOUser user)
+			throws UnknownHostException, IOException, ServerErrorException {
 		;
 		Response response = null;
 		try (HTTPStream http = new HTTPStream(new Socket(Config.SERVER_HOST, Config.SERVER_PORT))) {
@@ -25,10 +26,13 @@ public class AbstractDAO {
 			http.write(request);
 			response = http.readResponse();
 		}
+		if (response.getStatus() == 500) {
+			throw new ServerErrorException();
+		}
 		return response;
 	}
 
-	public Response send_request(Request request) throws UnknownHostException, IOException {
+	public Response send_request(Request request) throws UnknownHostException, IOException, ServerErrorException {
 		return send_request(request, null);
 	}
 

@@ -66,7 +66,10 @@ public class Question extends DataModel implements Cloneable {
 	}
 
 	public Choice getCorrect() {
-		return this.choices.get(this.correct_id);
+		if (this.choices.size() != 0 && this.choices.size() >= this.correct_id) {
+			return this.choices.get(this.correct_id);
+		}
+		return null;
 	}
 
 	public boolean validate(int choice) {

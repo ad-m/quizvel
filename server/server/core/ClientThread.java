@@ -9,16 +9,17 @@ import core.http.Response;
 import server.router.Router;
 import server.view.AbstractView;
 
-class ClientThread extends Thread{
-	
+class ClientThread extends Thread {
+
 	Socket socket;
 	private HTTPStream http;
-	ClientThread(Socket socket)throws IOException{
+
+	ClientThread(Socket socket) throws IOException {
 		this.socket = socket;
 		this.http = new HTTPStream(this.socket);
 	}
-	
-	public void run(){
+
+	public void run() {
 		try {
 			process();
 			socket.close();
@@ -30,17 +31,24 @@ class ClientThread extends Thread{
 
 	private void process() throws IOException {
 		Request request = this.http.readRequest();
-		if(request == null){
+		if (request == null) {
 			http.write(new Response("Malformed request", 500));
 			return;
-		};
+		}
+		;
 
 		AbstractView view = Router.getInstance().find(request);
-		if(view == null){
+		if (view == null) {
 			http.write(new Response("Page not found", 404));
 			return;
-		};
-
-		http.write(view.getResponse(request));
+		}
+		Response response = null;
+		try {
+			response = view.getResponse(request);
+		} catch (Exception e) {
+			response = new Response("Exception occur", 500);
+			e.printStackTrace();
+		}
+		http.write(response);
 	}
 }

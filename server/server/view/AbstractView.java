@@ -1,8 +1,8 @@
 package server.view;
 
-import core.http.HTTPObject;
 import core.http.Request;
+import core.http.Response;
 
 public abstract class AbstractView {
-	public abstract HTTPObject getResponse(Request request);
+	public abstract Response getResponse(Request request);
 }
