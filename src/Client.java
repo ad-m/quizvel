@@ -1,5 +1,4 @@
 
-
 import java.awt.EventQueue;
 
 import client.window.LoginWindow;
@@ -9,8 +8,7 @@ public class Client {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginWindow frame = new LoginWindow();
-					frame.setVisible(true);
+					new LoginWindow();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

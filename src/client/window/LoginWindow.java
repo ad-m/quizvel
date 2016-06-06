@@ -1,18 +1,37 @@
 package client.window;
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import java.awt.EventQueue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 
-public class LoginWindow extends JFrame {
-	private static final long serialVersionUID = -7136970263621192432L;
+import client.actions.LoginAction;
+import client.actions.RegisterAction;
+
+public class LoginWindow {
+
+	private JFrame frame;
+	private JTextField textField_login;
+	private JPasswordField textField_password;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginWindow window = new LoginWindow();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the application.
@@ -25,40 +44,40 @@ public class LoginWindow extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		this.setSize(300,120);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.getContentPane();
-		JPanel panel = new JPanel();
+		frame = new JFrame();
+		frame.setVisible(true);
+		frame.setBounds(110, 95, 230, 150);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 
-		this.getContentPane().add(panel);
-		SpringLayout layout = new SpringLayout();
-		panel.setLayout(layout);
+		textField_login = new JTextField();
+		textField_login.setBounds(100, 10, 120, 20);
+		frame.getContentPane().add(textField_login);
+		textField_login.setColumns(10);
+
 		JLabel lblLogin = new JLabel("Login: ");
-		panel.add(lblLogin);
-		JTextField textLogin = new JTextField("", 15);
-		layout.putConstraint(SpringLayout.NORTH, lblLogin, 5, SpringLayout.NORTH, textLogin);
-		layout.putConstraint(SpringLayout.EAST, lblLogin, 5, SpringLayout.WEST, textLogin);
-		layout.putConstraint(SpringLayout.NORTH, textLogin, 5, SpringLayout.NORTH, panel);
-		panel.add(textLogin);
+		lblLogin.setBounds(10, 10, 80, 20);
+		frame.getContentPane().add(lblLogin);
 
-		JLabel lblPassword = new JLabel("Password: ");
-		panel.add(lblPassword);
-		JTextField textPassword = new JPasswordField("", 15);
-		layout.putConstraint(SpringLayout.NORTH, lblPassword, 5, SpringLayout.NORTH, textPassword);
-		layout.putConstraint(SpringLayout.EAST, lblPassword, 5, SpringLayout.WEST, textPassword);
-		layout.putConstraint(SpringLayout.NORTH, textPassword, 5, SpringLayout.SOUTH, textLogin);
-		layout.putConstraint(SpringLayout.EAST, textLogin, 0, SpringLayout.EAST, textPassword);
-		layout.putConstraint(SpringLayout.WEST, textPassword, 90, SpringLayout.WEST, panel);
-		panel.add(textPassword);
-		JButton btn = new JButton("Login");
-		this.getContentPane().add(btn, BorderLayout.SOUTH);
-		btn.addActionListener(new ActionListener() {
+		textField_password = new JPasswordField();
+		textField_password.setBounds(100, 30, 120, 20);
+		frame.getContentPane().add(textField_password);
+		textField_password.setColumns(10);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+		JLabel lblRegister = new JLabel("Password:");
+		lblRegister.setBounds(10, 30, 80, 20);
+		frame.getContentPane().add(lblRegister);
 
-			}
-		});
+		JButton btnLogin = new JButton("Login");
+		btnLogin.setBounds(10, 60, 205, 25);
+		frame.getContentPane().add(btnLogin);
+
+		JButton btnRegister = new JButton("Register");
+		btnRegister.setBounds(10, 90, 205, 25);
+		frame.getContentPane().add(btnRegister);
+
+		btnLogin.addActionListener(new LoginAction(frame, textField_login, textField_password));
+
+		btnRegister.addActionListener(new RegisterAction(frame, textField_login, textField_password));
 	}
 }

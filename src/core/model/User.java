@@ -26,6 +26,9 @@ public class User extends DataModel {
 		if (obj.has("password")) {
 			this.setPassword(obj.getString("password"));
 		}
+		if (obj.has("admin")) {
+			this.admin = obj.getBoolean("admin");
+		}
 	};
 
 	public boolean checkPassword(String password) {

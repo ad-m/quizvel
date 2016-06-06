@@ -39,14 +39,14 @@ public class DAO extends AbstractDAO {
 		return is_ok_response(response);
 	}
 
-	public boolean authenticate(String username, String password) throws IOException, ServerErrorException {
+	public User authenticate(String username, String password) throws IOException, ServerErrorException {
 		DAOUser new_user = new DAOUser(username, password);
 		Response resp = this.send_request(new Request("/user/~current", "GET", ""), new_user);
 		if (resp.getStatus() == 200) {
 			this.user = new_user;
-			return true;
+			return new User(resp.getJSON());
 		}
-		return false;
+		return null;
 	}
 
 	public boolean register(String username, String password) throws IOException, ServerErrorException {
