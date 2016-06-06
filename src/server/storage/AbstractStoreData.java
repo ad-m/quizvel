@@ -20,6 +20,7 @@ public abstract class AbstractStoreData<T> implements Iterable<T> {
 		this.content = new LinkedList<T>();
 	}
 
+	@SuppressWarnings("unchecked")
 	public void load(String filename) {
 		ObjectInputStream ois;
 		try {

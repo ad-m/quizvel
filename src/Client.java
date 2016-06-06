@@ -1,4 +1,4 @@
-package client.core;
+
 
 import java.awt.EventQueue;
 
