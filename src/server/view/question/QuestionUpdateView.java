@@ -1,4 +1,4 @@
-package server.view;
+package server.view.question;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,6 +10,7 @@ import core.http.Request;
 import core.model.Question;
 import core.model.User;
 import server.storage.QuestionStorage;
+import server.view.generic.AbstractAdminJSONView;
 
 public class QuestionUpdateView extends AbstractAdminJSONView {
 

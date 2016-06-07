@@ -1,4 +1,4 @@
-package server.view;
+package server.view.generic;
 
 import core.http.Request;
 import core.http.Response;

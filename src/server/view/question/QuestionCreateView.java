@@ -1,4 +1,4 @@
-package server.view;
+package server.view.question;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,6 +7,7 @@ import core.http.Request;
 import core.model.Question;
 import core.model.User;
 import server.storage.QuestionStorage;
+import server.view.generic.AbstractAdminJSONView;
 
 public class QuestionCreateView extends AbstractAdminJSONView {
 

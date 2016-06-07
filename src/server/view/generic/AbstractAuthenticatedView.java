@@ -1,4 +1,4 @@
-package server.view;
+package server.view.generic;
 
 import java.util.Base64;
 import java.util.HashMap;

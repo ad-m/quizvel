@@ -1,6 +1,7 @@
-package server.view;
+package server.view.user;
 
 import server.storage.UserStorage;
+import server.view.generic.AbstractJSONView;
 
 import org.json.JSONArray;
 import org.json.JSONException;

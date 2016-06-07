@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import core.http.Request;
+import server.view.generic.AbstractJSONView;
 
 public class OKView extends AbstractJSONView {
 

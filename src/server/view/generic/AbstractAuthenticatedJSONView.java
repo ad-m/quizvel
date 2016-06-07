@@ -1,4 +1,4 @@
-package server.view;
+package server.view.generic;
 
 import org.json.JSONException;
 import org.json.JSONObject;

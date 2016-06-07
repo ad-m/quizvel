@@ -2,6 +2,7 @@ package server.view;
 
 import server.storage.QuestionStorage;
 import server.storage.UserStorage;
+import server.view.generic.AbstractAuthenticatedJSONView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
