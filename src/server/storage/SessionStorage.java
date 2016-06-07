@@ -9,7 +9,7 @@ import core.model.User;
 public class SessionStorage {
 	public final static SessionStorage INSTANCE = new SessionStorage();
 	private Map<User, Session> content = new HashMap<User, Session>();
-	
+
 	private SessionStorage() {
 	}
 
@@ -17,10 +17,11 @@ public class SessionStorage {
 		return INSTANCE;
 	}
 
-	public Session get(Object key) {
-		return content.get(key) != null ? content.get(key) : new Session();
-	}	
-	
-	
-	
+	public Session get(User key) {
+		if (!content.containsKey(key)) {
+			content.put(key, new Session());
+		}
+		return content.get(key);
+	}
+
 }
