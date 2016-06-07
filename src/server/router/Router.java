@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import core.http.Request;
-import server.view.AbstractView;
+import server.view.generic.AbstractView;
 
 public class Router {
 	private static final Router INSTANCE = new Router();

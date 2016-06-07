@@ -10,19 +10,19 @@ import server.router.RegexpRoute;
 import server.router.Router;
 import server.storage.QuestionStorage;
 import server.storage.UserStorage;
-import server.view.CurrentUserView;
 import server.view.OKView;
-import server.view.QuestionCreateView;
-import server.view.QuestionDeleteView;
-import server.view.QuestionGetView;
-import server.view.QuestionListView;
-import server.view.QuestionUpdateView;
 import server.view.SaveJSONView;
 import server.view.SurveyCheckView;
 import server.view.SurveyGetView;
-import server.view.UserListView;
-import server.view.UserPromoteView;
-import server.view.UserRegisterView;
+import server.view.question.QuestionCreateView;
+import server.view.question.QuestionDeleteView;
+import server.view.question.QuestionGetView;
+import server.view.question.QuestionListView;
+import server.view.question.QuestionUpdateView;
+import server.view.user.UserCurrentView;
+import server.view.user.UserListView;
+import server.view.user.UserPromoteView;
+import server.view.user.UserRegisterView;
 
 public class Server {
 	public static final int PORT = Config.LISTING_PORT;
@@ -39,7 +39,7 @@ public class Server {
 		router.add(new RegexpRoute(Method.POST, "^/user$", new UserRegisterView()));
 		router.add(new RegexpRoute(Method.POST, "^/user/~promote$", new UserPromoteView()));
 		router.add(new RegexpRoute(Method.GET, "^/user$", new UserListView()));
-		router.add(new RegexpRoute(Method.GET, "^/user/~current$", new CurrentUserView()));
+		router.add(new RegexpRoute(Method.GET, "^/user/~current$", new UserCurrentView()));
 		router.add(new RegexpRoute(Method.GET, "^/~save$", new SaveJSONView()));
 		// Question CRUD
 		// C

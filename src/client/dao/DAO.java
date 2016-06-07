@@ -146,21 +146,19 @@ public class DAO extends AbstractDAO {
 		DAO dao = DAO.getInstance();
 		try {
 			System.out.println(dao.healt_check());
-			System.out.println(dao.getUsers());
 			System.out.println(dao.authenticate("xyz", "xyz"));
-			System.out.println(dao.getUsers());
-			System.out.println(dao.getQuestions());
-			System.out.println(dao.saveQuestion(new Question("New question")));
-			System.out.println(dao.getQuestion(0));
-			System.out.println(dao.getQuestions());
-			Question question = new Question("Updated question");
-			question.add(new Choice("A"));
-			question.add(new Choice("B"));
-			question.add(new Choice("C"));
-			System.out.println(dao.saveQuestion(0, question));
-			System.out.println(dao.getQuestions());
-			System.out.println(dao.getQuestion(0));
-			System.out.println(dao.getSurvey());
+			System.out.println(dao.getQuestions().size());
+			for (int i = 0; i <= 25; i++) {
+				Question question = new Question("Updated question" + i);
+				question.add(new Choice("A"));
+				question.add(new Choice("B"));
+				question.add(new Choice("C"));
+				question.setCorrectId(0);
+				dao.saveQuestion(question);
+			}
+			// System.out.println(dao.save());
+			System.out.print(dao.getQuestions().size());
+			dao.save();
 		} catch (IOException | ServerErrorException e) {
 			e.printStackTrace();
 		}

@@ -1,7 +1,7 @@
 package server.router;
 
 import core.http.Request;
-import server.view.AbstractView;
+import server.view.generic.AbstractView;
 
 interface Route {
 

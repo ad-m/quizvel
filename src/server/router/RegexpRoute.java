@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 import core.http.Request;
 import core.http.Request.Method;
-import server.view.AbstractView;
+import server.view.generic.AbstractView;
 
 public class RegexpRoute implements Route {
 	private Method method;

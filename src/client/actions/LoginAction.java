@@ -11,7 +11,9 @@ import javax.swing.JTextField;
 
 import client.dao.DAO;
 import client.dao.ServerErrorException;
+import client.window.AdminWindow;
 import client.window.ExceptionDialog;
+import client.window.UserWindow;
 import core.model.User;
 
 public class LoginAction implements ActionListener {
@@ -29,24 +31,42 @@ public class LoginAction implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			User user = DAO.getInstance().authenticate(textField_login.getText(),
-					new String(textField_password.getPassword()));
+			User user = authenticate();
 			if (user == null) {
 				JOptionPane.showMessageDialog(frame, "Authentication fail", "Authentication",
 						JOptionPane.ERROR_MESSAGE);
 			} else {
 				frame.dispose();
-				String message = "Hello " + user.getUsername() + "!";
-				if (user.isAdmin()) {
-					message += " You are admin!";
-				}
-				JOptionPane.showMessageDialog(frame, message, "Welcome", JOptionPane.PLAIN_MESSAGE);
+				show_new_window(user);
 			}
-
 		} catch (IOException | ServerErrorException ex) {
 			// TODO Auto-generated catch block
 			ExceptionDialog.showExceptionDialog(frame, ex);
 		}
+	}
+
+	private User authenticate() throws IOException, ServerErrorException {
+		return DAO.getInstance().authenticate(textField_login.getText(), new String(textField_password.getPassword()));
+	}
+
+	private void show_new_window(User user) {
+		JOptionPane.showMessageDialog(frame, get_hello_message(user), "Welcome", JOptionPane.PLAIN_MESSAGE);
+
+		if (user.isAdmin() && JOptionPane.showConfirmDialog(frame, "Do you want go to admin section?", "Admin section",
+				JOptionPane.YES_NO_OPTION) == 0) {
+			new AdminWindow();
+		} else {
+			new UserWindow();
+		}
+	}
+
+	private String get_hello_message(User user) {
+
+		StringBuilder message = new StringBuilder("Hello " + user.getUsername() + "!");
+		if (user.isAdmin()) {
+			message.append(" You are admin!");
+		}
+		return message.toString();
 	}
 
 }

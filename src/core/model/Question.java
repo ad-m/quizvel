@@ -1,11 +1,12 @@
 package core.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Question extends DataModel implements Cloneable {
+public class Question extends DataModel implements Cloneable, Iterable<Choice> {
 	private static final long serialVersionUID = 8291807221891888120L;
 	String text;
 	private ArrayList<Choice> choices;
@@ -32,6 +33,10 @@ public class Question extends DataModel implements Cloneable {
 
 	public String getText() {
 		return text;
+	}
+
+	public Iterator<Choice> iterator() {
+		return choices.iterator();
 	}
 
 	public void setText(String text) {

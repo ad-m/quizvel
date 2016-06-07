@@ -7,7 +7,7 @@ import core.http.HTTPStream;
 import core.http.Request;
 import core.http.Response;
 import server.router.Router;
-import server.view.AbstractView;
+import server.view.generic.AbstractView;
 
 public class ClientThread extends Thread {
 
