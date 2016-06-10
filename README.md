@@ -1,18 +1,13 @@
 # java-quizvle
+# Aplikacja Quizvel
 
-## Wymogi 
-
-### Podstawowe wymogi
-Serwer powinien obsługiwać dwie grupy użytkowników: 
+## Założenia
+Serwer potrafi obsługiwać dwie grupy użytkowników: 
  * administratora (który tworzy testy)
  * testowanych (którzy je wypełniają).
-Każdy użytkownik systemu powinien się zarejestrować. Testy są pamiętane w pliku (lub bazie danych).
-Po wypełnieniu testu przez użytkownika, program powinien podsumować wyniki i na podstawie zadanych kryteriów wystawić ocenę.
+Każdy użytkownik systemu rejestruje się. Testy są pamiętane w pliku. Po wypełnieniu testu przez użytkownika, program powinien podsumować wyniki i wystawia ocenę poprzez uznanie wyniku < 3 punktów za niedostateczny, a pozostałe jako bardzo dobre.
+Program posiada możliwość edycji i usuwania  pytań i odpowiedzi.
 
-### Rozszerzone wymogi
-Program powinien posiadać możliwość edycji i usuwania  pytań i odpowiedzi.
-
-# Aplikacja Quizvel
 ## Specyfikacja protokołu
 ###Informacje ogólne
 Protokół aplikacji Quizvel bazuje na szeroko stosownym i opisanym w literaturze bezstanowy protokole HTTP/1.1.
