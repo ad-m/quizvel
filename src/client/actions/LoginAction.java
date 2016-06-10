@@ -50,14 +50,38 @@ public class LoginAction implements ActionListener {
 	}
 
 	private void show_new_window(User user) {
-		JOptionPane.showMessageDialog(frame, get_hello_message(user), "Welcome", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(frame, get_hello_message(user), "Welcome", JOptionPane.INFORMATION_MESSAGE);
 
 		if (user.isAdmin() && JOptionPane.showConfirmDialog(frame, "Do you want go to admin section?", "Admin section",
 				JOptionPane.YES_NO_OPTION) == 0) {
 			new AdminWindow();
-			System.out.println("Admin window opened!");
+		} else {
+			ask_secret(user);
+		}
+	}
+
+	private void ask_secret(User user) {
+		if (JOptionPane.showConfirmDialog(frame, "Do you want provide a secret?", "Secret section",
+				JOptionPane.YES_NO_OPTION) == 0) {
+			promote_process(user);
 		} else {
 			new UserWindow();
+		}
+	}
+
+	private void promote_process(User user) {
+		String secret = JOptionPane.showInputDialog(frame, "What's a secret?");
+		try {
+			if (DAO.getInstance().promote(secret)) {
+				JOptionPane.showMessageDialog(frame, get_hello_message(user), "Promoted!",
+						JOptionPane.INFORMATION_MESSAGE);
+				new AdminWindow();
+			} else {
+				JOptionPane.showMessageDialog(frame, "Secret incorrect.", "Error", JOptionPane.ERROR_MESSAGE);
+				new UserWindow();
+			}
+		} catch (IOException | ServerErrorException e) {
+			ExceptionDialog.showExceptionDialog(frame, e);
 		}
 	}
 
