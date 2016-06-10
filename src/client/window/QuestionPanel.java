@@ -46,9 +46,8 @@ public class QuestionPanel extends JPanel {
 
 	public int getChoiceId() {
 		if (group.getSelection() == null) {
-			return -1;
+			return 0;
 		}
-		;
 		return Integer.valueOf(group.getSelection().getActionCommand());
 	}
 

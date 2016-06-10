@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import client.actions.RemoveAction;
 import client.actions.questions.AddQuestionAction;
+import client.actions.questions.RemoveQuestionAction;
 import client.actions.questions.UpdateQuestionAction;
 import client.dao.DAO;
 import client.dao.ServerErrorException;
@@ -82,7 +82,7 @@ public class AdminWindow {
 		panel.add(btnAddQuestion);
 
 		JButton btnRemoveQuestion = new JButton("Remove question");
-		btnRemoveQuestion.addActionListener(new RemoveAction(frame, list, model));
+		btnRemoveQuestion.addActionListener(new RemoveQuestionAction(frame, list, model));
 		panel.add(btnRemoveQuestion);
 
 		JButton btnEditQuestion = new JButton("Edit question");

@@ -37,8 +37,9 @@ public final class RemoveQuestionAction implements ActionListener {
 					ExceptionDialog.showExceptionDialog(frame, e1);
 				}
 				model.remove(index);
+				JOptionPane.showMessageDialog(frame, text + " removed!");
 			}
-			JOptionPane.showMessageDialog(frame, text + " removed!");
+
 		}
 	}
 }
