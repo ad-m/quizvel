@@ -13,6 +13,7 @@ public class CloseAction implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		frame.setVisible(false);
 		frame.dispose();
 	}
 }
