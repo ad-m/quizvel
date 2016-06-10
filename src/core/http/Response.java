@@ -121,7 +121,6 @@ public class Response implements HTTPObject {
 	}
 
 	public JSONObject getJSON() throws JSONException {
-		System.out.println(this.body);
 		if (this.body == null || this.body.equals("")) {
 			return new JSONObject();
 		}

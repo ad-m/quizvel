@@ -35,7 +35,6 @@ public final class UpdateQuestionAction implements ActionListener {
 			QuestionDialog vv = new QuestionDialog(frame, list.getSelectedValue());
 			if (vv.getStatus()) {
 				vv.updateObject();
-				System.out.print(list.getSelectedValue());
 				model.updateIndex(list.getSelectedIndex());
 				try {
 					DAO.getInstance().saveQuestion(list.getSelectedIndex(), vv.getObject());

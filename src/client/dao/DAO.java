@@ -147,6 +147,7 @@ public class DAO extends AbstractDAO {
 		try {
 			System.out.println(dao.healt_check());
 			System.out.println(dao.authenticate("xyz", "xyz"));
+
 			System.out.println(dao.getQuestions().size());
 			for (int i = 0; i <= 25; i++) {
 				Question question = new Question("Updated question" + i);
