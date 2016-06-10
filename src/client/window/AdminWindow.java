@@ -1,11 +1,14 @@
 package client.window;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -14,9 +17,7 @@ import client.actions.questions.AddQuestionAction;
 import client.actions.questions.UpdateQuestionAction;
 import client.dao.DAO;
 import client.dao.ServerErrorException;
-import core.model.Choice;
 import core.model.Question;
-import server.storage.QuestionStorage;
 
 public class AdminWindow {
 	private JFrame frame;
@@ -30,16 +31,7 @@ public class AdminWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Question question = new Question("Lorem ipsum");
-					question.add(new Choice("X"));
-					QuestionStorage.getInstance().add(question.clone());
-					question.add(new Choice("Y"));
-					QuestionStorage.getInstance().add(question.clone());
-					question.add(new Choice("Z"));
-					QuestionStorage.getInstance().add(question.clone());
-					question.add(new Choice("D"));
-					QuestionStorage.getInstance().add(question.clone());
-
+					DAO.getInstance().authenticate("xyz", "xyz");
 					new AdminWindow();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -96,6 +88,26 @@ public class AdminWindow {
 		JButton btnEditQuestion = new JButton("Edit question");
 		btnEditQuestion.addActionListener(new UpdateQuestionAction(frame, model, list));
 		panel.add(btnEditQuestion);
+
+		JButton btnSave = new JButton("Save database");
+		btnSave.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if (DAO.getInstance().save()) {
+						JOptionPane.showMessageDialog(frame, "Database saved!", "Success",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(frame, "Unknown save error!", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				} catch (IOException | ServerErrorException e1) {
+					ExceptionDialog.showExceptionDialog(frame, e1);
+				}
+
+			}
+		});
+		panel.add(btnSave);
 
 		frame.setVisible(true);
 	};
