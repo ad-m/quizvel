@@ -14,6 +14,13 @@ import core.model.Choice;
 import core.model.Question;
 import core.model.User;
 
+/**
+ * Klasa odpowiedzialna za implementacje konfiguracji z moim serwerem i
+ * wykonanie wszystkich operacji na danych i transmisji informacji.
+ * 
+ * @author adas
+ *
+ */
 public class DAO extends AbstractDAO {
 	public final static DAO INSTANCE = new DAO();
 

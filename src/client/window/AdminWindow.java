@@ -19,14 +19,17 @@ import client.dao.DAO;
 import client.dao.ServerErrorException;
 import core.model.Question;
 
+/**
+ * Klasa widoku GUI interfejsu użytkownika.
+ * 
+ * @author adas
+ *
+ */
 public class AdminWindow {
 	private JFrame frame;
 	private ListModel<Question> model;
 	private JList<Question> list;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,9 +43,6 @@ public class AdminWindow {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public AdminWindow() {
 		model = new ListModel<Question>();
 		try {
@@ -54,9 +54,6 @@ public class AdminWindow {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 
 		frame = new JFrame();

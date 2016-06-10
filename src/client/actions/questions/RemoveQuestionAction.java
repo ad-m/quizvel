@@ -13,6 +13,13 @@ import client.dao.ServerErrorException;
 import client.window.ExceptionDialog;
 import client.window.ListModel;
 
+/**
+ * Klasa odpowiedzialna za akcjego usuwanie zaznaczonego w JList pytania z
+ * ListModel i serwera.
+ * 
+ * @author adas
+ *
+ */
 public final class RemoveQuestionAction implements ActionListener {
 	private JList<?> list;
 	private ListModel<?> model;

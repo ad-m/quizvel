@@ -16,6 +16,15 @@ import client.window.ExceptionDialog;
 import client.window.UserWindow;
 import core.model.User;
 
+/**
+ * Klasa akcji logowania użytkownika z wykorzystaniem przekazanych pól tekstu.
+ * Wyświetla komunikaty błedów i umożliwia promowanie użytkownika logującego
+ * się.
+ * 
+ * @author adas
+ *
+ */
+
 public class LoginAction implements ActionListener {
 	private JFrame frame;
 	private JTextField textField_login;
@@ -28,6 +37,12 @@ public class LoginAction implements ActionListener {
 		this.textField_password = textField_password;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
@@ -45,10 +60,21 @@ public class LoginAction implements ActionListener {
 		}
 	}
 
+	/**
+	 * @return wynik autoryzacji użytkownika
+	 * @throws IOException
+	 * @throws ServerErrorException
+	 */
 	private User authenticate() throws IOException, ServerErrorException {
 		return DAO.getInstance().authenticate(textField_login.getText(), new String(textField_password.getPassword()));
 	}
 
+	/**
+	 * wyświetlenie okna powitalnego
+	 * 
+	 * @param user
+	 *            logowany użytkownik
+	 */
 	private void show_new_window(User user) {
 		JOptionPane.showMessageDialog(frame, get_hello_message(user), "Welcome", JOptionPane.INFORMATION_MESSAGE);
 
@@ -60,6 +86,12 @@ public class LoginAction implements ActionListener {
 		}
 	}
 
+	/**
+	 * wyświetlnie z pytaniem o promocje zalogowanego użytkownika
+	 * 
+	 * @param user
+	 *            logowany użytkownik
+	 */
 	private void ask_secret(User user) {
 		if (JOptionPane.showConfirmDialog(frame, "Do you want provide a secret?", "Secret section",
 				JOptionPane.YES_NO_OPTION) == 0) {
@@ -69,6 +101,12 @@ public class LoginAction implements ActionListener {
 		}
 	}
 
+	/**
+	 * wykonanie akcji promocji użytkownika
+	 * 
+	 * @param user
+	 *            logowany użytkownik
+	 */
 	private void promote_process(User user) {
 		String secret = JOptionPane.showInputDialog(frame, "What's a secret?");
 		try {
@@ -85,6 +123,11 @@ public class LoginAction implements ActionListener {
 		}
 	}
 
+	/**
+	 * @param user
+	 *            logowany użytkownik
+	 * @return adekwantny komunikat dla użytkownika
+	 */
 	private String get_hello_message(User user) {
 
 		StringBuilder message = new StringBuilder("Hello " + user.getUsername() + "!");

@@ -6,6 +6,14 @@ import java.util.List;
 
 import javax.swing.AbstractListModel;
 
+/**
+ * Klasa odpowiedzialna za implementacje AbstractListModel na potrzeby
+ * wyświetlenie listy obiektów w poszczególnych częściach aplikacji.
+ * 
+ * @author adas
+ *
+ * @param <T>
+ */
 public class ListModel<T> extends AbstractListModel<T> implements Iterable<T> {
 	private static final long serialVersionUID = 7094310649646444688L;
 	protected List<T> data = new ArrayList<T>();

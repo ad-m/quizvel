@@ -12,6 +12,12 @@ import client.actions.CloseAction;
 import client.actions.UpdateObjectAction;
 import core.model.Choice;
 
+/**
+ * Klasa odpowiedzialna za okno tworzenia i edycji wybranej opcji pytania.
+ * 
+ * @author adas
+ *
+ */
 public class ChoiceDialog extends JDialog implements WindowObject<Choice> {
 	private static final long serialVersionUID = -3475156254787631881L;
 	private Choice object;
@@ -20,9 +26,6 @@ public class ChoiceDialog extends JDialog implements WindowObject<Choice> {
 	private JTextField txtText = new JTextField("Text");
 	private boolean status = false;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -35,9 +38,6 @@ public class ChoiceDialog extends JDialog implements WindowObject<Choice> {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public ChoiceDialog(JFrame frame, Choice choice) {
 		super(frame, "", true);
 		this.frame = frame;
@@ -46,9 +46,6 @@ public class ChoiceDialog extends JDialog implements WindowObject<Choice> {
 		initialize();
 	}
 
-	/**
-	 * @wbp.parser.constructor
-	 */
 	public ChoiceDialog(JFrame frame) {
 		this(frame, new Choice(""));
 	}
@@ -57,9 +54,6 @@ public class ChoiceDialog extends JDialog implements WindowObject<Choice> {
 		txtText.setText(this.object.getText());
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		setBounds(100, 100, 225, 100);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

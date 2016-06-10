@@ -6,7 +6,19 @@ import javax.swing.JOptionPane;
 import client.dao.DAO;
 import client.window.LoginWindow;
 
+/**
+ * Klasa uruchamiania aplikacji klienta.
+ * 
+ * @author adas
+ *
+ */
 public class Client {
+	/**
+	 * Metoda uruchomieniowa.
+	 * 
+	 * @param args
+	 *            argumenty CLI (niewykorzystywane)
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

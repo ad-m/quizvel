@@ -28,6 +28,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+/**
+ * Klasa obiektu reprezentującego odpowiedź HTTP
+ * 
+ * @author adas
+ *
+ */
 public class Response implements HTTPObject {
 	public String proto;
 	public int status;
@@ -53,10 +59,16 @@ public class Response implements HTTPObject {
 		this(body, 200);
 	}
 
+	/**
+	 * @return protokół
+	 */
 	public String getProto() {
 		return proto;
 	}
 
+	/**
+	 * @return status żądania
+	 */
 	public int getStatus() {
 		return status;
 	}
@@ -71,6 +83,9 @@ public class Response implements HTTPObject {
 		return body;
 	}
 
+	/**
+	 * @return etykieta żadania HTTP
+	 */
 	private String status_label() {
 		if (this.status == 200) {
 			return "OK";
@@ -115,11 +130,20 @@ public class Response implements HTTPObject {
 		return content.toString().getBytes();
 	}
 
+	/**
+	 * @param args
+	 *            test stworzenia odpowiedzi
+	 */
 	public static void main(String[] args) {
 		System.out.print(new Response("OK", 200, new HashMap<String, String>()));
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see core.http.HTTPObject#getJSON()
+	 */
 	public JSONObject getJSON() throws JSONException {
 		if (this.body == null || this.body.equals("")) {
 			return new JSONObject();

@@ -17,23 +17,28 @@ import javax.swing.border.EmptyBorder;
 
 import client.actions.CloseAction;
 
+/**
+ * Klasa odpowiedzialna za okno dialogowe wyjątku w komunikacji z serwerem.
+ * 
+ * @author adas
+ *
+ */
 public class ExceptionDialog extends JDialog {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2013533529093896863L;
 	private final JPanel contentPanel = new JPanel();
 
 	/**
-	 * Launch the application.
+	 * Metoda statyczna wyswietlania okna prezentujacego wyjatek.
+	 * 
+	 * @param frame
+	 *            okno nadrzedne do zablokowania
+	 * @param ex
+	 *            wyjatek do wyswietlenia
 	 */
 	public static void showExceptionDialog(JFrame frame, Throwable ex) {
 		new ExceptionDialog(new JFrame(), ex);
 	}
 
-	/**
-	 * Create the dialog.
-	 */
 	public ExceptionDialog(JFrame frame, Throwable ex) {
 		super(frame, true);
 		setBounds(100, 100, 450, 300);

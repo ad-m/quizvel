@@ -8,6 +8,11 @@ import server.view.generic.AbstractJSONView;
 
 public class OKView extends AbstractJSONView {
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see server.view.generic.AbstractJSONView#getJSON(core.http.Request)
+	 */
 	public JSONObject getJSON(Request request) {
 		JSONObject json = new JSONObject();
 		try {
@@ -16,7 +21,7 @@ public class OKView extends AbstractJSONView {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return json;
 	}
 

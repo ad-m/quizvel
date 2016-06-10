@@ -13,6 +13,12 @@ import client.window.ListModel;
 import client.window.QuestionDialog;
 import core.model.Question;
 
+/**
+ * Klasa akcji dodawania pytania do ListModelu i serwera.
+ * 
+ * @author adas
+ *
+ */
 public final class AddQuestionAction implements ActionListener {
 	private ListModel<Question> model;
 	private JFrame frame;

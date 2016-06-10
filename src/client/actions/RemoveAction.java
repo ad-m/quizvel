@@ -9,6 +9,13 @@ import javax.swing.JOptionPane;
 
 import client.window.ListModel;
 
+/**
+ * Klasa generyczna odpowiedzialna za akcje usuwanie zaznaczonego elementu w
+ * JList z generycznego ListModel.
+ * 
+ * @author adas
+ *
+ */
 public final class RemoveAction implements ActionListener {
 	private JList<?> list;
 	private ListModel<?> model;

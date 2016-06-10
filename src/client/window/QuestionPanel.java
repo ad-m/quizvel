@@ -12,8 +12,18 @@ import javax.swing.JRadioButton;
 import core.model.Choice;
 import core.model.Question;
 
-@SuppressWarnings("serial")
+/**
+ * Klasa służacego do wyświetlania pytan ankiety i zaznaczania wybranej
+ * odpowiedzi.
+ * 
+ * @author adas
+ *
+ */
 public class QuestionPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5500638339607489494L;
 	JFrame frame;
 	Question question;
 	JPanel panel;

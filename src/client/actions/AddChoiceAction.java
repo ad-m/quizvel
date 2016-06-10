@@ -9,7 +9,13 @@ import client.window.ChoiceDialog;
 import client.window.ListModel;
 import core.model.Choice;
 
-public final class AddChoiceAction implements ActionListener {
+/**
+ * Klasa dodawania opcji do listy opcji wyboru w pytaniu
+ * 
+ * @author adas
+ *
+ */
+public class AddChoiceAction implements ActionListener {
 
 	private ListModel<Choice> list;
 	private JFrame frame;
@@ -20,6 +26,12 @@ public final class AddChoiceAction implements ActionListener {
 		this.frame = frame;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ChoiceDialog vw = new ChoiceDialog(frame);

@@ -14,6 +14,12 @@ import client.dao.ServerErrorException;
 import client.window.ExceptionDialog;
 import client.window.QuestionPanel;
 
+/**
+ * Klasa akcji - weryfikacji udzielonych odpowiedzi i wystawienia oceny.
+ * 
+ * @author adas
+ *
+ */
 public class SurveyCheckAction implements ActionListener {
 	private JFrame frame;
 	private List<QuestionPanel> question_panels;

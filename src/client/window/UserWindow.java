@@ -15,12 +15,13 @@ import client.dao.DAO;
 import client.dao.ServerErrorException;
 import core.model.Question;
 
+/**
+ * @author adas
+ *
+ */
 public class UserWindow {
 	private JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -34,16 +35,10 @@ public class UserWindow {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public UserWindow() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setVisible(true);
@@ -60,6 +55,12 @@ public class UserWindow {
 
 	}
 
+	/**
+	 * inicjalizacja i dodanie paneli pytań.
+	 * 
+	 * @param tabbedPane
+	 * @return zwrocenie listy stworzonych paneli.
+	 */
 	private List<QuestionPanel> initialize_question_tab(JTabbedPane tabbedPane) {
 		List<Question> question_list;
 		List<QuestionPanel> result = new LinkedList<QuestionPanel>();

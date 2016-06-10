@@ -9,6 +9,9 @@ import server.view.generic.AbstractAuthenticatedJSONView;
 
 public class UserCurrentView extends AbstractAuthenticatedJSONView {
 
+	/**
+	 * @return zwrócenie informacji o zalgoowanym użytkowniku
+	 */
 	@Override
 	public JSONObject getJSON(Request request, User user) throws JSONException {
 		return user.toJSON();

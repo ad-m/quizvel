@@ -15,6 +15,14 @@ import client.window.ListModel;
 import client.window.QuestionDialog;
 import core.model.Question;
 
+/**
+ * Klasa odpowiedzialna za akcje aktualizacji zaznaczonego w JList pytania z
+ * ListModel i serwera.
+ * 
+ * @author adas
+ *
+ */
+
 public final class UpdateQuestionAction implements ActionListener {
 
 	private JFrame frame;

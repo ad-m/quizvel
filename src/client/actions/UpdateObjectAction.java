@@ -8,6 +8,12 @@ import javax.swing.JFrame;
 import client.window.ExceptionDialog;
 import client.window.WindowObject;
 
+/**
+ * Generyczna klasa odpowiedzialna za akcje aktualizacji zaznaczonego obiektu.
+ * 
+ * @author adas
+ *
+ */
 public class UpdateObjectAction implements ActionListener {
 	JFrame frame;
 	WindowObject<?> dialog;

@@ -11,15 +11,16 @@ import javax.swing.JTextField;
 import client.actions.LoginAction;
 import client.actions.RegisterAction;
 
+/**
+ * 
+ * @author adas
+ *
+ */
 public class LoginWindow {
-
 	private JFrame frame;
 	private JTextField textField_login;
 	private JPasswordField textField_password;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -33,9 +34,6 @@ public class LoginWindow {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public LoginWindow() {
 		initialize();
 	}

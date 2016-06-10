@@ -24,6 +24,12 @@ import server.view.user.UserListView;
 import server.view.user.UserPromoteView;
 import server.view.user.UserRegisterView;
 
+/**
+ * Klasa uruchamiania aplikacji serwera i konfiguracje routingu.
+ * 
+ * @author adas
+ *
+ */
 public class Server {
 	public static final int PORT = Config.LISTING_PORT;
 	private ServerSocket server;
@@ -31,6 +37,11 @@ public class Server {
 	public Server() {
 	}
 
+	/**
+	 * uruchomienie serwera
+	 * 
+	 * @throws IOException
+	 */
 	void runServer() throws IOException {
 		server = new ServerSocket(Server.PORT);
 
@@ -66,6 +77,11 @@ public class Server {
 
 	}
 
+	/**
+	 * wczytanie danych i wywolanie uruchomienia serwera
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		UserStorage.getInstance().load("user.db");
 		QuestionStorage.getInstance().load("question.db");

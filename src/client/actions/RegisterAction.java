@@ -13,6 +13,13 @@ import client.dao.DAO;
 import client.dao.ServerErrorException;
 import client.window.ExceptionDialog;
 
+/**
+ * Klasa odpowiedzialna za akcje rejestracje użytkownika z wykorzystaniem
+ * przekazanych pól tekstu.
+ * 
+ * @author adas
+ *
+ */
 public class RegisterAction implements ActionListener {
 
 	private JFrame frame;

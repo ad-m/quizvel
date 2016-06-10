@@ -9,6 +9,12 @@ import core.http.HTTPStream;
 import core.http.Request;
 import core.http.Response;
 
+/**
+ * Klasa abstrakcyjna do komunikacji z serwerem z wykorzystaniem HTTP.
+ * 
+ * @author adas
+ *
+ */
 public class AbstractDAO {
 
 	public AbstractDAO() {
@@ -17,7 +23,6 @@ public class AbstractDAO {
 
 	public Response send_request(Request request, DAOUser user)
 			throws UnknownHostException, IOException, ServerErrorException {
-		;
 		Response response = null;
 		try (HTTPStream http = new HTTPStream(new Socket(Config.SERVER_HOST, Config.SERVER_PORT))) {
 			if (user != null) {

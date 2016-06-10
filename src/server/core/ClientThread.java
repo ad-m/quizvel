@@ -9,6 +9,11 @@ import core.http.Response;
 import server.router.Router;
 import server.view.generic.AbstractView;
 
+/**
+ * Klasa wątku obsługi żadania do serwera
+ * 
+ * @author adas
+ */
 public class ClientThread extends Thread {
 
 	Socket socket;

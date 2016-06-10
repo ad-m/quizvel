@@ -6,6 +6,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
+/**
+ * dekorator odpowiedzialny za transmisje obiektów HTTP przez gniazdo
+ * 
+ * @author adas
+ *
+ */
 public class HTTPStream implements Closeable {
 	Socket socket;
 	InputStream in;
@@ -21,18 +27,32 @@ public class HTTPStream implements Closeable {
 		this.response_parser = new ResponseParser(this.in);
 	};
 
+	/**
+	 * @return odczytanie żadania z gniazda
+	 * @throws IOException
+	 */
 	public Request readRequest() throws IOException {
 		Request request = this.request_parser.nextValue();
 		System.err.println(request);
 		return request;
 	}
 
+	/**
+	 * @return odczytanie odpowiedzi z gniazda
+	 * @throws IOException
+	 */
 	public Response readResponse() throws IOException {
 		Response response = this.response_parser.nextValue();
 		System.err.println(response);
 		return response;
 	}
 
+	/**
+	 * @param request
+	 *            przesłanie obiektu HTTP
+	 * @throws IOException
+	 *             problemy komunikacyjne z serwere
+	 */
 	public void write(HTTPObject request) throws IOException {
 		this.out.write(request.getBytes());
 		System.err.println(request);
