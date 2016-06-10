@@ -107,4 +107,10 @@ public class Question extends DataModel implements Cloneable, Iterable<Choice> {
 		question.add(new Choice("NO"));
 		System.out.println(new Question(question.toJSON()).toJSON().toString().equals(question.toJSON().toString()));
 	}
+
+	@Override
+	public Question clone() {
+		return new Question(this.toJSON());
+	}
+
 }

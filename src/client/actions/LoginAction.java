@@ -55,6 +55,7 @@ public class LoginAction implements ActionListener {
 		if (user.isAdmin() && JOptionPane.showConfirmDialog(frame, "Do you want go to admin section?", "Admin section",
 				JOptionPane.YES_NO_OPTION) == 0) {
 			new AdminWindow();
+			System.out.println("Admin window opened!");
 		} else {
 			new UserWindow();
 		}

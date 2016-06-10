@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.function.Predicate;
 
@@ -130,6 +131,10 @@ public abstract class AbstractStoreData<T> implements Iterable<T> {
 
 	public T remove(int index) {
 		return content.remove(index);
+	}
+
+	public List<T> asList() {
+		return content;
 	}
 
 }

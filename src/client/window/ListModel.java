@@ -44,4 +44,8 @@ public class ListModel<T> extends AbstractListModel<T> implements Iterable<T> {
 		}
 	}
 
+	public void updateIndex(int index) {
+		fireContentsChanged(this, index, index);
+	};
+
 }
