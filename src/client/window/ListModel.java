@@ -13,6 +13,7 @@ import javax.swing.AbstractListModel;
  * @author adas
  *
  * @param <T>
+ *            obiekt przechowywany w modelu
  */
 public class ListModel<T> extends AbstractListModel<T> implements Iterable<T> {
 	private static final long serialVersionUID = 7094310649646444688L;

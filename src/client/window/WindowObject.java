@@ -38,4 +38,6 @@ public interface WindowObject<T> {
 	 */
 	public void dispose();
 
+	public void copyData();
+
 }

@@ -50,7 +50,7 @@ public class ChoiceDialog extends JDialog implements WindowObject<Choice> {
 		this(frame, new Choice(""));
 	}
 
-	private void copyData() {
+	public void copyData() {
 		txtText.setText(this.object.getText());
 	}
 
