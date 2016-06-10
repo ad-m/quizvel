@@ -64,14 +64,14 @@ public class Question extends DataModel implements Cloneable, Iterable<Choice> {
 	}
 
 	public void setCorrectId(int correct) {
-		if (correct < 0 && correct > this.choices.size()) {
+		if (correct <= 0 && correct >= this.choices.size()) {
 			throw new IllegalStateException("This correct is inlegal.");
 		}
 		this.correct_id = correct;
 	}
 
 	public Choice getCorrect() {
-		if (this.choices.size() != 0 && this.choices.size() >= this.correct_id) {
+		if (this.choices.size() != 0 && this.choices.size() > this.correct_id) {
 			return this.choices.get(this.correct_id);
 		}
 		return null;
@@ -106,6 +106,10 @@ public class Question extends DataModel implements Cloneable, Iterable<Choice> {
 		question.add(new Choice("YES"));
 		question.add(new Choice("NO"));
 		System.out.println(new Question(question.toJSON()).toJSON().toString().equals(question.toJSON().toString()));
+		question.setCorrectId(2);
+		assert question.getCorrect() == null;
+		question.setCorrectId(1);
+		assert question.getCorrect().toJSON().toString().equals(new Choice("NO").toJSON().toString());
 	}
 
 	@Override
