@@ -29,7 +29,13 @@ public class SurveyCheckAction implements ActionListener {
 		List<Integer> answers = get_answers();
 		try {
 			int result = DAO.getInstance().checkSurvey(answers);
-			JOptionPane.showMessageDialog(frame, "Your result is " + result + " points.");
+			String rank = null;
+			if (result > 3) {
+				rank = "bdb";
+			} else {
+				rank = "ndst";
+			}
+			JOptionPane.showMessageDialog(frame, "Your result is " + result + " points. Your rank is" + rank);
 		} catch (IOException | ServerErrorException e1) {
 			ExceptionDialog.showExceptionDialog(frame, e1);
 		}
