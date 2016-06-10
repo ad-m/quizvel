@@ -1,6 +1,7 @@
 package client.window;
 
 import java.awt.EventQueue;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +12,8 @@ import javax.swing.JScrollPane;
 import client.actions.RemoveAction;
 import client.actions.questions.AddQuestionAction;
 import client.actions.questions.UpdateQuestionAction;
+import client.dao.DAO;
+import client.dao.ServerErrorException;
 import core.model.Choice;
 import core.model.Question;
 import server.storage.QuestionStorage;
@@ -37,8 +40,7 @@ public class AdminWindow {
 					question.add(new Choice("D"));
 					QuestionStorage.getInstance().add(question.clone());
 
-					AdminWindow window = new AdminWindow();
-					window.frame.setVisible(true);
+					new AdminWindow();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,7 +53,11 @@ public class AdminWindow {
 	 */
 	public AdminWindow() {
 		model = new ListModel<Question>();
-		model.addAll(QuestionStorage.getInstance().asList());
+		try {
+			model.addAll(DAO.getInstance().getQuestions());
+		} catch (IOException | ServerErrorException e) {
+			ExceptionDialog.showExceptionDialog(frame, e);
+		}
 		list = new JList<Question>(model);
 		initialize();
 	}
@@ -90,5 +96,7 @@ public class AdminWindow {
 		JButton btnEditQuestion = new JButton("Edit question");
 		btnEditQuestion.addActionListener(new UpdateQuestionAction(frame, model, list));
 		panel.add(btnEditQuestion);
+
+		frame.setVisible(true);
 	};
 }
