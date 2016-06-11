@@ -7,7 +7,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import core.http.Request;
-import core.model.Question;
 import core.model.Session;
 import core.model.Survey;
 import core.model.User;
@@ -27,10 +26,10 @@ public class SurveyCheckView extends AbstractSessionAuthenticatedJSONView {
 		Survey survey = QuestionStorage.getInstance().getSurvey(question_str);
 		int point = 0;
 
-		JSONArray answers = request.getJSON().getJSONArray("answers");
 		int i = 0;
-		for (Question question : survey) {
-			if (question.validate(answers.getInt(i))) {
+		JSONArray answers = request.getJSON().getJSONArray("answers");
+		while (survey.size() < i && answers.length() < i) {
+			if (survey.get(i).validate(answers.getInt(i))) {
 				point += 1;
 			}
 			i++;
