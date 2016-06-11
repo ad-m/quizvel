@@ -1,16 +1,16 @@
 package client.actions.questions;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import client.actions.generic.AbstractAddObjectAction;
 import client.dao.DAO;
 import client.dao.ServerErrorException;
 import client.window.ExceptionDialog;
 import client.window.ListModel;
 import client.window.QuestionDialog;
+import client.window.WindowObject;
 import core.model.Question;
 
 /**
@@ -19,31 +19,25 @@ import core.model.Question;
  * @author adas
  *
  */
-public final class AddQuestionAction implements ActionListener {
-	private ListModel<Question> model;
-	private JFrame frame;
+public final class AddQuestionAction extends AbstractAddObjectAction<Question> {
 
-	public AddQuestionAction(JFrame frame, ListModel<Question> model) {
-		super();
-		this.frame = frame;
-		this.model = model;
+	public AddQuestionAction(JFrame frame, ListModel<Question> list) {
+		super(frame, list);
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		QuestionDialog vw = new QuestionDialog(frame);
-		// if (vw.getStatus()) {
-		if (vw.getStatus()) {
-			Question obj = vw.getObject();
-			try {
-				DAO.getInstance().saveQuestion(obj);
-			} catch (IOException | ServerErrorException e1) {
-				ExceptionDialog.showExceptionDialog(frame, e1);
-			}
-			model.addElement(obj);
+	public void savePerformed(Question obj) {
+		super.savePerformed(obj);
+		try {
+			DAO.getInstance().saveQuestion(obj);
+		} catch (IOException | ServerErrorException e1) {
+			ExceptionDialog.showExceptionDialog(this.getFrame(), e1);
 		}
-
-		vw.dispose();
-
 	}
+
+	@Override
+	public WindowObject<Question> getDialog(JFrame frame) {
+		return new QuestionDialog(frame);
+	}
+
 }

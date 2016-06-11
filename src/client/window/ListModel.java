@@ -17,10 +17,15 @@ import javax.swing.AbstractListModel;
  */
 public class ListModel<T> extends AbstractListModel<T> implements Iterable<T> {
 	private static final long serialVersionUID = 7094310649646444688L;
-	protected List<T> data = new ArrayList<T>();
+	protected List<T> data;
+
+	public ListModel(List<T> list) {
+		super();
+		this.data = list;
+	}
 
 	public ListModel() {
-		super();
+		this(new ArrayList<T>());
 	}
 
 	@Override
@@ -53,8 +58,9 @@ public class ListModel<T> extends AbstractListModel<T> implements Iterable<T> {
 		}
 	}
 
-	public void updateIndex(int index) {
+	public T set(int index, T element) {
 		fireContentsChanged(this, index, index);
-	};
+		return data.set(index, element);
+	}
 
 }

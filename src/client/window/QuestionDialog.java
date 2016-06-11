@@ -11,9 +11,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import client.actions.AddChoiceAction;
-import client.actions.CloseAction;
-import client.actions.RemoveAction;
-import client.actions.UpdateObjectAction;
+import client.actions.generic.CloseAction;
+import client.actions.generic.RemoveObjectAction;
+import client.actions.generic.SaveObjectAction;
 import core.model.Choice;
 import core.model.Question;
 
@@ -69,8 +69,8 @@ public class QuestionDialog extends JDialog implements WindowObject<Question> {
 
 	private void initialize() {
 		setBounds(100, 100, 420, 300);
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // Todo: Sprawdzic
-															// poprawna wartosc
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
 		getContentPane().setLayout(null);
 		JLabel lblPytanie = new JLabel("Pytanie");
 		lblPytanie.setBounds(28, 12, 70, 15);
@@ -95,12 +95,12 @@ public class QuestionDialog extends JDialog implements WindowObject<Question> {
 
 		btnRemoveChoice = new JButton("Remove choice");
 		btnRemoveChoice.setBounds(200, 194, 150, 25);
-		btnRemoveChoice.addActionListener(new RemoveAction(frame, list, model));
+		btnRemoveChoice.addActionListener(new RemoveObjectAction(frame, list, model));
 		getContentPane().add(btnRemoveChoice);
 
 		btnSaveQuestion = new JButton("Save question");
 		btnSaveQuestion.setBounds(40, 231, 150, 25);
-		btnSaveQuestion.addActionListener(new UpdateObjectAction(frame, this));
+		btnSaveQuestion.addActionListener(new SaveObjectAction(frame, this));
 		getContentPane().add(btnSaveQuestion);
 
 		btnCancelQuestion = new JButton("Cancel question");

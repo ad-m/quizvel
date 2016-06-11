@@ -1,47 +1,22 @@
 package client.actions;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 
+import client.actions.generic.AbstractAddObjectAction;
 import client.window.ChoiceDialog;
 import client.window.ListModel;
+import client.window.WindowObject;
 import core.model.Choice;
 
-/**
- * Klasa dodawania opcji do listy opcji wyboru w pytaniu
- * 
- * @author adas
- *
- */
-public class AddChoiceAction implements ActionListener {
-
-	private ListModel<Choice> list;
-	private JFrame frame;
+public class AddChoiceAction extends AbstractAddObjectAction<Choice> {
 
 	public AddChoiceAction(JFrame frame, ListModel<Choice> list) {
-		super();
-		this.list = list;
-		this.frame = frame;
+		super(frame, list);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		ChoiceDialog vw = new ChoiceDialog(frame);
-		// if (vw.getStatus()) {
-		if (vw.getStatus()) {
-			Choice obj = vw.getObject();
-			list.addElement(obj);
-		}
-
-		vw.dispose();
-
+	public WindowObject<Choice> getDialog(JFrame frame) {
+		return new ChoiceDialog(frame);
 	}
+
 }

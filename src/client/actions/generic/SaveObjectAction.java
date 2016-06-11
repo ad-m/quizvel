@@ -1,4 +1,4 @@
-package client.actions;
+package client.actions.generic;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,11 +14,11 @@ import client.window.WindowObject;
  * @author adas
  *
  */
-public class UpdateObjectAction implements ActionListener {
+public class SaveObjectAction implements ActionListener {
 	JFrame frame;
 	WindowObject<?> dialog;
 
-	public UpdateObjectAction(JFrame frame, WindowObject<?> dialog) {
+	public SaveObjectAction(JFrame frame, WindowObject<?> dialog) {
 		this.frame = frame;
 		this.dialog = dialog;
 	}

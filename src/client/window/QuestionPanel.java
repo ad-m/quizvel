@@ -45,6 +45,10 @@ public class QuestionPanel extends JPanel {
 		this.add(lblQuestionText, BorderLayout.NORTH);
 		this.add(panel, BorderLayout.SOUTH);
 
+		addChoices();
+	}
+
+	private void addChoices() {
 		int i = 0;
 		for (Choice choice : question) {
 			JRadioButton choice_button = new JRadioButton(choice.getText());

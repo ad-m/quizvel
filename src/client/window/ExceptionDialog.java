@@ -15,7 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-import client.actions.CloseAction;
+import client.actions.generic.CloseAction;
 
 /**
  * Klasa odpowiedzialna za okno dialogowe wyjątku w komunikacji z serwerem.

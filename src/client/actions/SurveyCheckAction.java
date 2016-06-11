@@ -32,22 +32,24 @@ public class SurveyCheckAction implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		List<Integer> answers = get_answers();
 		try {
-			int result = DAO.getInstance().checkSurvey(answers);
-			String rank = null;
-			if (result > 3) {
-				rank = "bdb";
-			} else {
-				rank = "ndst";
-			}
-			JOptionPane.showMessageDialog(frame, "Your result is " + result + " points. Your rank is" + rank);
+			JOptionPane.showMessageDialog(frame, getSuccessMessage(DAO.getInstance().checkSurvey(getAnswers())));
 		} catch (IOException | ServerErrorException e1) {
 			ExceptionDialog.showExceptionDialog(frame, e1);
 		}
 	}
 
-	private List<Integer> get_answers() {
+	private String getSuccessMessage(int result) {
+		String rank;
+		if (result > 3) {
+			rank = "bdb";
+		} else {
+			rank = "ndst";
+		}
+		return "Your result is " + result + " points. Your rank is " + rank;
+	}
+
+	private List<Integer> getAnswers() {
 		List<Integer> answers = new LinkedList<Integer>();
 		for (QuestionPanel question_panel : question_panels) {
 			answers.add(question_panel.getChoiceId());

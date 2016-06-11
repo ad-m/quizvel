@@ -1,5 +1,7 @@
 package client.window;
 
+import core.model.DataModel;
+
 /**
  * okno manipulacji obiektem danych
  * 
@@ -8,7 +10,7 @@ package client.window;
  * @param <T>
  *            obiekt danych
  */
-public interface WindowObject<T> {
+public interface WindowObject<T extends DataModel> {
 
 	/**
 	 * @return stworzony w oknie obiekt

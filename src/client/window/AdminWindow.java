@@ -1,17 +1,15 @@
 package client.window;
 
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import client.actions.SaveAction;
 import client.actions.questions.AddQuestionAction;
 import client.actions.questions.RemoveQuestionAction;
 import client.actions.questions.UpdateQuestionAction;
@@ -45,13 +43,17 @@ public class AdminWindow {
 
 	public AdminWindow() {
 		model = new ListModel<Question>();
+		loadQuestions();
+		list = new JList<Question>(model);
+		initialize();
+	}
+
+	private void loadQuestions() {
 		try {
 			model.addAll(DAO.getInstance().getQuestions());
 		} catch (IOException | ServerErrorException e) {
 			ExceptionDialog.showExceptionDialog(frame, e);
 		}
-		list = new JList<Question>(model);
-		initialize();
 	}
 
 	private void initialize() {
@@ -87,23 +89,7 @@ public class AdminWindow {
 		panel.add(btnEditQuestion);
 
 		JButton btnSave = new JButton("Save database");
-		btnSave.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					if (DAO.getInstance().save()) {
-						JOptionPane.showMessageDialog(frame, "Database saved!", "Success",
-								JOptionPane.INFORMATION_MESSAGE);
-					} else {
-						JOptionPane.showMessageDialog(frame, "Unknown save error!", "Error", JOptionPane.ERROR_MESSAGE);
-					}
-				} catch (IOException | ServerErrorException e1) {
-					ExceptionDialog.showExceptionDialog(frame, e1);
-				}
-
-			}
-		});
+		btnSave.addActionListener(new SaveAction(frame));
 		panel.add(btnSave);
 
 		frame.setVisible(true);

@@ -37,11 +37,9 @@ public class RegisterAction implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		try {
 			if (DAO.getInstance().register(textField_login.getText(), new String(textField_password.getPassword()))) {
-				// default title and icon
 				JOptionPane.showMessageDialog(frame, "Account registered. Try login now! See you soon!");
 			} else {
 				JOptionPane.showMessageDialog(frame, "Registration fail", "Authentication", JOptionPane.ERROR_MESSAGE);
-
 			}
 		} catch (IOException | ServerErrorException ex) {
 			ExceptionDialog.showExceptionDialog(frame, ex);

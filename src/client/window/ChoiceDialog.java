@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import client.actions.CloseAction;
-import client.actions.UpdateObjectAction;
+import client.actions.generic.CloseAction;
+import client.actions.generic.SaveObjectAction;
 import core.model.Choice;
 
 /**
@@ -69,7 +69,7 @@ public class ChoiceDialog extends JDialog implements WindowObject<Choice> {
 		JButton btnSave = new JButton("Save");
 		btnSave.setBounds(15, 35, 84, 25);
 		getContentPane().add(btnSave);
-		btnSave.addActionListener(new UpdateObjectAction(frame, this));
+		btnSave.addActionListener(new SaveObjectAction(frame, this));
 
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(110, 35, 84, 25);

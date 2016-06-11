@@ -1,4 +1,4 @@
-package client.actions;
+package client.actions.generic;
 
 import java.awt.Window;
 import java.awt.event.ActionEvent;

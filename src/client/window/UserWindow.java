@@ -47,7 +47,7 @@ public class UserWindow {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frame.getContentPane().add(tabbedPane, BorderLayout.NORTH);
 
-		List<QuestionPanel> question_panels = initialize_question_tab(tabbedPane);
+		List<QuestionPanel> question_panels = initializeQuestionTabs(tabbedPane);
 		JButton saveButton = new JButton("check");
 		saveButton.addActionListener(new SurveyCheckAction(frame, question_panels));
 
@@ -61,7 +61,7 @@ public class UserWindow {
 	 * @param tabbedPane
 	 * @return zwrocenie listy stworzonych paneli.
 	 */
-	private List<QuestionPanel> initialize_question_tab(JTabbedPane tabbedPane) {
+	private List<QuestionPanel> initializeQuestionTabs(JTabbedPane tabbedPane) {
 		List<Question> question_list;
 		List<QuestionPanel> result = new LinkedList<QuestionPanel>();
 		try {
