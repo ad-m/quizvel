@@ -2,12 +2,16 @@ package core.model;
 
 import org.json.JSONObject;
 
-public class Choice extends DataModel implements Cloneable {
+public class Choice extends DataModel {
 	private static final long serialVersionUID = 6022085637930721558L;
 	private String text;
 
 	public Choice(String text) {
 		this.text = text;
+	}
+
+	public Choice(JSONObject obj) {
+		this(obj.getString("text"));
 	}
 
 	public String getText() {
@@ -16,10 +20,6 @@ public class Choice extends DataModel implements Cloneable {
 
 	public void setText(String text) {
 		this.text = text;
-	}
-
-	public Choice(JSONObject obj) {
-		this(obj.getString("text"));
 	}
 
 	@Override
@@ -49,6 +49,6 @@ public class Choice extends DataModel implements Cloneable {
 	}
 
 	public Choice clone() throws CloneNotSupportedException {
-		return (Choice) super.clone();
+		return new Choice(this.toJSON());
 	}
 }

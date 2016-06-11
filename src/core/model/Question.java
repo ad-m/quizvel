@@ -6,7 +6,7 @@ import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Question extends DataModel implements Cloneable, Iterable<Choice> {
+public class Question extends DataModel implements Iterable<Choice> {
 	private static final long serialVersionUID = 8291807221891888120L;
 	String text;
 	private ArrayList<Choice> choices;
