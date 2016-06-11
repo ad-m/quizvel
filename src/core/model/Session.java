@@ -1,9 +1,10 @@
 package core.model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Session {
-	HashMap<String, String> content;
+	Map<String, String> content;
 
 	public Session() {
 		this.content = new HashMap<String, String>();
@@ -32,9 +33,5 @@ public class Session {
 	public void clear() {
 		content.clear();
 	}
-	
-	
-	
-	
 
 }

@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,7 +48,7 @@ public class RequestParser {
 			String method = top.group(1);
 			String url = top.group(2);
 			String proto = top.group(3);
-			HashMap<String, String> headers = parse_header();
+			Map<String, String> headers = parse_header();
 			String body = parse_body(headers);
 			request = new Request(url, method, body, headers, proto);
 		}
@@ -63,7 +64,7 @@ public class RequestParser {
 	 * @return ciało żądania
 	 * @throws IOException
 	 */
-	private String parse_body(HashMap<String, String> headers) throws IOException {
+	private String parse_body(Map<String, String> headers) throws IOException {
 		// Parse body
 		LinkedList<Character> body = new LinkedList<Character>();
 		String content_length_value = headers.get("content-length");
@@ -87,8 +88,8 @@ public class RequestParser {
 	 * @return nagłówki żadania
 	 * @throws IOException
 	 */
-	private HashMap<String, String> parse_header() throws IOException {
-		HashMap<String, String> headers = new HashMap<String, String>();
+	private Map<String, String> parse_header() throws IOException {
+		Map<String, String> headers = new HashMap<String, String>();
 		String line;
 
 		while ((line = in.readLine()) != null && !line.equals("")) {

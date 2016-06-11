@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,13 +27,13 @@ public class ResponseParser {
 		Matcher top = re_first.matcher(this.in.readLine());
 		top.find();
 		int status = Integer.valueOf(top.group(2));
-		HashMap<String, String> headers = parse_header();
+		Map<String, String> headers = parse_header();
 		String proto = top.group(1);
 		String body = parse_body(headers);
 		return new Response(body, status, headers, proto);
 	}
 
-	private String parse_body(HashMap<String, String> headers) throws IOException {
+	private String parse_body(Map<String, String> headers) throws IOException {
 		// Parse body
 		LinkedList<Character> body = new LinkedList<Character>();
 		String content_length_value = headers.get("content-length");
@@ -50,8 +51,8 @@ public class ResponseParser {
 		return builder.toString();
 	}
 
-	private HashMap<String, String> parse_header() throws IOException {
-		HashMap<String, String> headers = new HashMap<String, String>();
+	private Map<String, String> parse_header() throws IOException {
+		Map<String, String> headers = new HashMap<String, String>();
 		String line;
 
 		while ((line = in.readLine()) != null && !line.equals("")) {

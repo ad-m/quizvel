@@ -29,10 +29,10 @@ public class Request implements HTTPObject {
 	public Method method;
 	public String url;
 	public String proto;
-	public HashMap<String, String> headers = new HashMap<String, String>();
+	public Map<String, String> headers = new HashMap<String, String>();
 	public String body;
 
-	public Request(String url, String method, String body, HashMap<String, String> headers, String proto) {
+	public Request(String url, String method, String body, Map<String, String> headers, String proto) {
 		this.method = Method.valueOf(method);
 		if (this.method == null) {
 			this.method = Method.GET;
@@ -43,7 +43,7 @@ public class Request implements HTTPObject {
 		this.body = body;
 	}
 
-	public Request(String url, String method, String body, HashMap<String, String> headers) {
+	public Request(String url, String method, String body, Map<String, String> headers) {
 		this(url, method, body, headers, "HTTP/1.1");
 	}
 
@@ -93,7 +93,7 @@ public class Request implements HTTPObject {
 	/**
 	 * @return nagłówki żądania
 	 */
-	public HashMap<String, String> getHeaders() {
+	public Map<String, String> getHeaders() {
 		return headers;
 	}
 
