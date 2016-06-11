@@ -12,17 +12,18 @@ import core.model.User;
 
 public class UserListView extends AbstractJSONView {
 
-	public JSONObject getJSON(Request request) throws JSONException{
+	public JSONObject getJSON(Request request) throws JSONException {
 
 		UserStorage users = UserStorage.getInstance();
-		
+
 		JSONArray user_list = new JSONArray();
-		  for (User user: users) {
-			  user_list.put(user.toJSON());
-		  };
+		for (User user : users) {
+			user_list.put(user.toJSON());
+		}
+		;
 		JSONObject resp = new JSONObject();
 		resp.put("users", user_list);
-		
+
 		return resp;
 	}
 

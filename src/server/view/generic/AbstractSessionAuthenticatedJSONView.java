@@ -9,8 +9,7 @@ import core.http.Request;
 import core.model.Session;
 import core.model.User;
 
-public abstract class AbstractSessionAuthenticatedJSONView extends
-		AbstractAuthenticatedJSONView {
+public abstract class AbstractSessionAuthenticatedJSONView extends AbstractAuthenticatedJSONView {
 
 	@Override
 	public JSONObject getJSON(Request request, User user) throws JSONException {
