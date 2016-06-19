@@ -15,8 +15,4 @@ public abstract class AbstractQuestionIDView extends AbstractAdminJSONView {
 		return Integer.valueOf(matcher.group(1));
 	}
 
-	public AbstractQuestionIDView() {
-		super();
-	}
-
 }

@@ -92,7 +92,6 @@ public class RequestParser {
 			for (int i = 0; i < content_length; i++) {
 				body.add((char) in.read());
 			}
-			;
 		}
 		StringBuilder builder = new StringBuilder(body.size());
 		for (Character ch : body) {
