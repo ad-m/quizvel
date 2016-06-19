@@ -15,7 +15,7 @@ public abstract class AbstractAuthenticatedView extends AbstractView {
 	public static final Pattern re_basic = Pattern.compile("^Basic (.+?)$");
 
 	public Response getResponse(Request request) {
-		User user = parse_authentication_header(request);
+		User user = parseAuthenticationHeader(request);
 		if (user == null) {
 			return authenticationFail(request);
 		}
@@ -23,7 +23,7 @@ public abstract class AbstractAuthenticatedView extends AbstractView {
 		return getResponse(request, user);
 	}
 
-	private User parse_authentication_header(Request request) {
+	private User parseAuthenticationHeader(Request request) {
 		UserStorage users = UserStorage.getInstance();
 		String authentication_string = request.get("authorization");
 		if (authentication_string == null) {

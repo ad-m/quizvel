@@ -40,7 +40,6 @@ public class RegexpRoute implements Route {
 		if (!this.method.equals(request.getMethod())) {
 			return false;
 		}
-		;
 		return pattern.matcher(request.getUrl()).find();
 	}
 

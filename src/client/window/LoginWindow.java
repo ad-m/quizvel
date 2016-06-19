@@ -18,8 +18,6 @@ import client.actions.RegisterAction;
  */
 public class LoginWindow {
 	private JFrame frame;
-	private JTextField textField_login;
-	private JPasswordField textField_password;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,7 +46,7 @@ public class LoginWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		textField_login = new JTextField();
+		JTextField textField_login = new JTextField();
 		textField_login.setBounds(100, 10, 120, 20);
 		frame.getContentPane().add(textField_login);
 		textField_login.setColumns(10);
@@ -57,7 +55,7 @@ public class LoginWindow {
 		lblLogin.setBounds(10, 10, 80, 20);
 		frame.getContentPane().add(lblLogin);
 
-		textField_password = new JPasswordField();
+		JPasswordField textField_password = new JPasswordField();
 		textField_password.setBounds(100, 30, 120, 20);
 		frame.getContentPane().add(textField_password);
 		textField_password.setColumns(10);

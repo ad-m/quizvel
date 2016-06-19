@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Session {
-	Map<String, String> content;
+	private Map<String, String> content;
 
 	public Session() {
 		this.content = new HashMap<String, String>();

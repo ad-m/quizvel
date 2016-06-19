@@ -16,7 +16,7 @@ import server.view.generic.AbstractView;
  */
 public class ClientThread extends Thread {
 
-	Socket socket;
+	private Socket socket;
 	private HTTPStream http;
 
 	public ClientThread(Socket socket) throws IOException {

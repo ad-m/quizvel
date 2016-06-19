@@ -24,10 +24,10 @@ public class QuestionPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5500638339607489494L;
-	JFrame frame;
-	Question question;
-	JPanel panel;
-	ButtonGroup group;
+	private JFrame frame;
+	private Question question;
+	private JPanel panel;
+	private ButtonGroup group;
 
 	public QuestionPanel(JFrame frame, Question question) {
 		super();

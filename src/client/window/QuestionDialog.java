@@ -30,9 +30,6 @@ public class QuestionDialog extends JDialog implements WindowObject<Question> {
 	private JTextField textField = new JTextField();;
 	private JScrollPane scrollPane;
 	private JButton btnAddChoice;
-	private JButton btnRemoveChoice;
-	private JButton btnSaveQuestion;
-	private JButton btnCancelQuestion;
 	private JList<Choice> list;
 	private Question object;
 	private ListModel<Choice> model;
@@ -93,17 +90,17 @@ public class QuestionDialog extends JDialog implements WindowObject<Question> {
 		btnAddChoice.addActionListener(new AddChoiceAction(frame, model));
 		getContentPane().add(btnAddChoice);
 
-		btnRemoveChoice = new JButton("Remove choice");
+		JButton btnRemoveChoice = new JButton("Remove choice");
 		btnRemoveChoice.setBounds(200, 194, 150, 25);
 		btnRemoveChoice.addActionListener(new RemoveObjectAction(frame, list, model));
 		getContentPane().add(btnRemoveChoice);
 
-		btnSaveQuestion = new JButton("Save question");
+		JButton btnSaveQuestion = new JButton("Save question");
 		btnSaveQuestion.setBounds(40, 231, 150, 25);
 		btnSaveQuestion.addActionListener(new SaveObjectAction(frame, this));
 		getContentPane().add(btnSaveQuestion);
 
-		btnCancelQuestion = new JButton("Cancel question");
+		JButton btnCancelQuestion = new JButton("Cancel question");
 		btnCancelQuestion.setBounds(200, 231, 150, 25);
 		btnCancelQuestion.addActionListener(new CloseAction(this));
 		getContentPane().add(btnCancelQuestion);

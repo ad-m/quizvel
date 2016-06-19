@@ -30,14 +30,14 @@ public class RequestParser {
 	 * @throws IOException
 	 */
 	public Request nextValue() throws IOException {
-		return this.parse_request();
+		return this.parseRequest();
 	}
 
 	/**
 	 * @return pobranie następnego żądania
 	 * @throws IOException
 	 */
-	private Request parse_request() throws IOException {
+	private Request parseRequest() throws IOException {
 		Request request = null;
 		String line = this.in.readLine();
 		if (line == null) {
@@ -48,12 +48,32 @@ public class RequestParser {
 			String method = top.group(1);
 			String url = top.group(2);
 			String proto = top.group(3);
-			Map<String, String> headers = parse_header();
-			String body = parse_body(headers);
+			Map<String, String> headers = parseHeader();
+			String body = parseBody(headers);
 			request = new Request(url, method, body, headers, proto);
 		}
 		;
 		return request;
+	}
+
+	/**
+	 * odczytanie i przetworzenie nagłówków z żądania
+	 * 
+	 * @return nagłówki żadania
+	 * @throws IOException
+	 */
+	private Map<String, String> parseHeader() throws IOException {
+		Map<String, String> headers = new HashMap<String, String>();
+		String line;
+
+		while ((line = in.readLine()) != null && !line.equals("")) {
+			Matcher matcher = RequestParser.re_header.matcher(line);
+			if (matcher.find()) {
+				headers.put(matcher.group(1).trim().toLowerCase(), matcher.group(2).trim());
+
+			}
+		}
+		return headers;
 	}
 
 	/**
@@ -64,7 +84,7 @@ public class RequestParser {
 	 * @return ciało żądania
 	 * @throws IOException
 	 */
-	private String parse_body(Map<String, String> headers) throws IOException {
+	private String parseBody(Map<String, String> headers) throws IOException {
 		// Parse body
 		LinkedList<Character> body = new LinkedList<Character>();
 		String content_length_value = headers.get("content-length");
@@ -80,25 +100,5 @@ public class RequestParser {
 			builder.append(ch);
 		}
 		return builder.toString();
-	}
-
-	/**
-	 * odczytanie i przetworzenie nagłówków z żądania
-	 * 
-	 * @return nagłówki żadania
-	 * @throws IOException
-	 */
-	private Map<String, String> parse_header() throws IOException {
-		Map<String, String> headers = new HashMap<String, String>();
-		String line;
-
-		while ((line = in.readLine()) != null && !line.equals("")) {
-			Matcher matcher = RequestParser.re_header.matcher(line);
-			if (matcher.find()) {
-				headers.put(matcher.group(1).trim().toLowerCase(), matcher.group(2).trim());
-
-			}
-		}
-		return headers;
 	}
 }

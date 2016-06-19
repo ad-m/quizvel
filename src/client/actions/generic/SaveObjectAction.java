@@ -15,8 +15,8 @@ import client.window.WindowObject;
  *
  */
 public class SaveObjectAction implements ActionListener {
-	JFrame frame;
-	WindowObject<?> dialog;
+	private JFrame frame;
+	private WindowObject<?> dialog;
 
 	public SaveObjectAction(JFrame frame, WindowObject<?> dialog) {
 		this.frame = frame;

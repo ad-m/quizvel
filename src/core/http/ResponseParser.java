@@ -20,38 +20,20 @@ public class ResponseParser {
 	}
 
 	public Response nextValue() throws IOException {
-		return this.parse_response();
+		return this.parseResponse();
 	}
 
-	private Response parse_response() throws IOException {
+	private Response parseResponse() throws IOException {
 		Matcher top = re_first.matcher(this.in.readLine());
 		top.find();
 		int status = Integer.valueOf(top.group(2));
-		Map<String, String> headers = parse_header();
+		Map<String, String> headers = parseHeader();
 		String proto = top.group(1);
-		String body = parse_body(headers);
+		String body = parseBody(headers);
 		return new Response(body, status, headers, proto);
 	}
 
-	private String parse_body(Map<String, String> headers) throws IOException {
-		// Parse body
-		LinkedList<Character> body = new LinkedList<Character>();
-		String content_length_value = headers.get("content-length");
-		if (content_length_value != null) {
-			int content_length = Integer.parseInt(content_length_value.trim());
-			for (int i = 0; i < content_length; i++) {
-				body.add((char) in.read());
-			}
-			;
-		}
-		StringBuilder builder = new StringBuilder(body.size());
-		for (Character ch : body) {
-			builder.append(ch);
-		}
-		return builder.toString();
-	}
-
-	private Map<String, String> parse_header() throws IOException {
+	private Map<String, String> parseHeader() throws IOException {
 		Map<String, String> headers = new HashMap<String, String>();
 		String line;
 
@@ -65,4 +47,22 @@ public class ResponseParser {
 		;
 		return headers;
 	}
+
+	private String parseBody(Map<String, String> headers) throws IOException {
+		// Parse body
+		LinkedList<Character> body = new LinkedList<Character>();
+		String content_length_value = headers.get("content-length");
+		if (content_length_value != null) {
+			int content_length = Integer.parseInt(content_length_value.trim());
+			for (int i = 0; i < content_length; i++) {
+				body.add((char) in.read());
+			}
+		}
+		StringBuilder builder = new StringBuilder(body.size());
+		for (Character ch : body) {
+			builder.append(ch);
+		}
+		return builder.toString();
+	}
+
 }

@@ -35,8 +35,8 @@ import org.json.JSONTokener;
  *
  */
 public class Response implements HTTPObject {
-	public String proto;
-	public int status;
+	private String proto;
+	private int status;
 	private Map<String, String> headers = new HashMap<String, String>();
 	private String body;
 

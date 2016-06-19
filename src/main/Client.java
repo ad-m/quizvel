@@ -1,3 +1,4 @@
+package main;
 
 import java.awt.EventQueue;
 
@@ -23,7 +24,7 @@ public class Client {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					if (DAO.getInstance().healt_check()) {
+					if (DAO.getInstance().checkHealt()) {
 						new LoginWindow();
 					} else {
 						JOptionPane.showMessageDialog(null, "No connection to server.", "Connection error",

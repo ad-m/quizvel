@@ -14,7 +14,7 @@ import server.view.generic.AbstractAdminJSONView;
 public class QuestionDeleteView extends AbstractAdminJSONView {
 	public static final Pattern RE_PARSE_URL = Pattern.compile("/([0-9]+)$");
 
-	private static Integer get_id(String url) {
+	private static Integer getId(String url) {
 		Matcher matcher = RE_PARSE_URL.matcher(url);
 		matcher.find();
 		return Integer.valueOf(matcher.group(1));
@@ -22,7 +22,7 @@ public class QuestionDeleteView extends AbstractAdminJSONView {
 
 	@Override
 	public JSONObject getJSON(Request request, User user) throws JSONException {
-		QuestionStorage.getInstance().remove(QuestionDeleteView.get_id(request.url));
+		QuestionStorage.getInstance().remove(QuestionDeleteView.getId(request.url));
 		JSONObject resp = new JSONObject();
 		resp.put("status", "OK");
 		return resp;

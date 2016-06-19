@@ -52,7 +52,7 @@ public class LoginAction implements ActionListener {
 						JOptionPane.ERROR_MESSAGE);
 			} else {
 				frame.dispose();
-				show_new_window(user);
+				showUserWindow(user);
 			}
 		} catch (IOException | ServerErrorException ex) {
 			// TODO Auto-generated catch block
@@ -75,14 +75,14 @@ public class LoginAction implements ActionListener {
 	 * @param user
 	 *            logowany użytkownik
 	 */
-	private void show_new_window(User user) {
-		JOptionPane.showMessageDialog(frame, get_hello_message(user), "Welcome", JOptionPane.INFORMATION_MESSAGE);
+	private void showUserWindow(User user) {
+		JOptionPane.showMessageDialog(frame, getHelloMessage(user), "Welcome", JOptionPane.INFORMATION_MESSAGE);
 
 		if (user.isAdmin() && JOptionPane.showConfirmDialog(frame, "Do you want go to admin section?", "Admin section",
 				JOptionPane.YES_NO_OPTION) == 0) {
 			new AdminWindow();
 		} else {
-			ask_secret(user);
+			askSecret(user);
 		}
 	}
 
@@ -92,10 +92,10 @@ public class LoginAction implements ActionListener {
 	 * @param user
 	 *            logowany użytkownik
 	 */
-	private void ask_secret(User user) {
+	private void askSecret(User user) {
 		if (JOptionPane.showConfirmDialog(frame, "Do you want provide a secret?", "Secret section",
 				JOptionPane.YES_NO_OPTION) == 0) {
-			promote_process(user);
+			processPromote(user);
 		} else {
 			new UserWindow();
 		}
@@ -107,11 +107,11 @@ public class LoginAction implements ActionListener {
 	 * @param user
 	 *            logowany użytkownik
 	 */
-	private void promote_process(User user) {
+	private void processPromote(User user) {
 		String secret = JOptionPane.showInputDialog(frame, "What's a secret?");
 		try {
 			if (DAO.getInstance().promote(secret)) {
-				JOptionPane.showMessageDialog(frame, get_hello_message(user), "Promoted!",
+				JOptionPane.showMessageDialog(frame, getHelloMessage(user), "Promoted!",
 						JOptionPane.INFORMATION_MESSAGE);
 				new AdminWindow();
 			} else {
@@ -128,7 +128,7 @@ public class LoginAction implements ActionListener {
 	 *            logowany użytkownik
 	 * @return adekwantny komunikat dla użytkownika
 	 */
-	private String get_hello_message(User user) {
+	private String getHelloMessage(User user) {
 
 		StringBuilder message = new StringBuilder("Hello " + user.getUsername() + "!");
 		if (user.isAdmin()) {

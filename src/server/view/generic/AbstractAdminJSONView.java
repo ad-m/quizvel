@@ -8,7 +8,7 @@ public abstract class AbstractAdminJSONView extends AbstractAuthenticatedJSONVie
 
 	@Override
 	public Response getResponse(Request request, User user) {
-		if (user.isAdmin() == false) {
+		if (user.isAdmin()) {
 			return super.authenticationFail(request);
 		}
 		return super.getResponse(request, user);

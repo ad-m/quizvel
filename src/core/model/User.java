@@ -75,11 +75,11 @@ public class User extends DataModel {
 	public static void main(String[] args) {
 
 		User u1 = new User("user1", "good");
-		assert u1.checkPassword("good") == true;
-		assert u1.checkPassword("bad") == false;
-		assert u1.setPassword("new") == true;
-		assert u1.checkPassword("good") == false;
-		assert u1.checkPassword("new") == true;
+		assert u1.checkPassword("good");
+		assert !u1.checkPassword("bad");
+		assert u1.setPassword("new");
+		assert !u1.checkPassword("good");
+		assert u1.checkPassword("new");
 
 	}
 

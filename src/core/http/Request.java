@@ -26,11 +26,11 @@ public class Request implements HTTPObject {
 		POST, GET, DELETE, PUT
 	}
 
-	public Method method;
-	public String url;
-	public String proto;
-	public Map<String, String> headers = new HashMap<String, String>();
-	public String body;
+	private Method method;
+	private String url;
+	private String proto;
+	private Map<String, String> headers = new HashMap<String, String>();
+	private String body;
 
 	public Request(String url, String method, String body, Map<String, String> headers, String proto) {
 		this.method = Method.valueOf(method);
@@ -68,11 +68,11 @@ public class Request implements HTTPObject {
 	 *            hasło użytkownika
 	 */
 	public void setUser(String username, String password) {
-		String encoded = get_auth_string(username, password);
+		String encoded = getAuthString(username, password);
 		this.headers.put("Authorization", encoded);
 	}
 
-	private static String get_auth_string(String username, String password) {
+	private static String getAuthString(String username, String password) {
 		return "Basic " + Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
 	}
 
@@ -170,6 +170,6 @@ public class Request implements HTTPObject {
 	 *            test
 	 */
 	public static void main(String[] args) {
-		assert Request.get_auth_string("xyz", "xyz").equals("Basic eHl6Onh5eg==");
+		assert Request.getAuthString("xyz", "xyz").equals("Basic eHl6Onh5eg==");
 	}
 }

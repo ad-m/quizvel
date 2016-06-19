@@ -8,9 +8,9 @@ import org.json.JSONObject;
 
 public class Question extends DataModel implements Iterable<Choice> {
 	private static final long serialVersionUID = 8291807221891888120L;
-	String text;
+	private String text;
 	private ArrayList<Choice> choices;
-	int correct_id;
+	private int correct_id;
 
 	public Question() {
 		this.choices = new ArrayList<Choice>();

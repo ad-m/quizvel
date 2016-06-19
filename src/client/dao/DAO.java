@@ -29,26 +29,30 @@ public class DAO extends AbstractDAO {
 	private DAO() {
 	}
 
+	private boolean isOK(Response resp) {
+		return resp.getStatus() == 200 && resp.getJSON().getString("status").equalsIgnoreCase("OK");
+	}
+
 	public static DAO getInstance() {
 		return INSTANCE;
 	}
 
-	public boolean healt_check() {
+	public boolean checkHealt() {
 		try {
-			return this.send_request(new Request("/", "GET")).getStatus() == 200;
+			return this.send(new Request("/", "GET")).getStatus() == 200;
 		} catch (IOException | ServerErrorException e) {
 			return false;
 		}
 	}
 
 	public boolean save() throws IOException, ServerErrorException {
-		Response response = this.send_request(new Request("/~save", "GET"), this.user);
-		return is_ok_response(response);
+		Response response = this.send(new Request("/~save", "GET"), this.user);
+		return isOK(response);
 	}
 
 	public User authenticate(String username, String password) throws IOException, ServerErrorException {
 		DAOUser new_user = new DAOUser(username, password);
-		Response resp = this.send_request(new Request("/user/~current", "GET", ""), new_user);
+		Response resp = this.send(new Request("/user/~current", "GET", ""), new_user);
 		if (resp.getStatus() == 200) {
 			this.user = new_user;
 			return new User(resp.getJSON());
@@ -60,7 +64,7 @@ public class DAO extends AbstractDAO {
 		JSONObject body = new JSONObject();
 		body.put("username", username);
 		body.put("password", password);
-		Response resp = this.send_request(new Request("/user", "POST", body));
+		Response resp = this.send(new Request("/user", "POST", body));
 		if (resp.getJSON().getString("status").equals("OK")) {
 			this.user = new DAOUser(username, password);
 			return true;
@@ -71,13 +75,13 @@ public class DAO extends AbstractDAO {
 	public boolean promote(String secret) throws UnknownHostException, IOException, ServerErrorException {
 		JSONObject body = new JSONObject();
 		body.put("secret", secret);
-		Response resp = this.send_request(new Request("/user/~promote", "POST", body), this.user);
+		Response resp = this.send(new Request("/user/~promote", "POST", body), this.user);
 		return resp.getStatus() == 200 && resp.getJSON().getString("status").equals("OK");
 	}
 
 	public List<User> getUsers() throws IOException, ServerErrorException {
 		List<User> users = new LinkedList<User>();
-		Response resp = this.send_request(new Request("/user", "GET"));
+		Response resp = this.send(new Request("/user", "GET"));
 		JSONArray json_users = resp.getJSON().getJSONArray("users");
 		for (int i = 0; i < json_users.length(); i++) {
 			users.add(new User(json_users.getJSONObject(i)));
@@ -86,17 +90,17 @@ public class DAO extends AbstractDAO {
 	}
 
 	public boolean saveQuestion(Question question) throws IOException, ServerErrorException {
-		Response resp = this.send_request(new Request("/question", "POST", question.toJSON()), user);
+		Response resp = this.send(new Request("/question", "POST", question.toJSON()), user);
 		return resp.getStatus() == 200 && resp.getJSON().getString("status").equals("OK");
 	}
 
 	public List<Question> getQuestions() throws IOException, ServerErrorException {
-		return get_question_list("/question");
+		return getQuestionList("/question");
 	}
 
-	private List<Question> get_question_list(String uri) throws IOException, ServerErrorException {
+	private List<Question> getQuestionList(String uri) throws IOException, ServerErrorException {
 		List<Question> objects = new LinkedList<Question>();
-		Response resp = this.send_request(new Request(uri, "GET"), this.user);
+		Response resp = this.send(new Request(uri, "GET"), this.user);
 		JSONObject json = resp.getJSON();
 		if (json.has("status") && json.getString("status").equals("Admin-only")) {
 			return null;
@@ -109,7 +113,7 @@ public class DAO extends AbstractDAO {
 	}
 
 	public Question getQuestion(int id) throws IOException, ServerErrorException {
-		Response resp = this.send_request(new Request("/question/" + id, "GET"), user);
+		Response resp = this.send(new Request("/question/" + id, "GET"), user);
 		if (resp.getStatus() != 200) {
 			return null;
 		}
@@ -117,21 +121,17 @@ public class DAO extends AbstractDAO {
 	}
 
 	public boolean saveQuestion(int id, Question question) throws IOException, ServerErrorException {
-		Response resp = this.send_request(new Request("/question/" + id, "POST", question.toJSON()), user);
-		return is_ok_response(resp);
-	}
-
-	private boolean is_ok_response(Response resp) {
-		return resp.getStatus() == 200 && resp.getJSON().getString("status").toLowerCase().equals("OK");
+		Response resp = this.send(new Request("/question/" + id, "POST", question.toJSON()), user);
+		return isOK(resp);
 	}
 
 	public boolean deleteQuestion(int id) throws IOException, ServerErrorException {
-		Response resp = this.send_request(new Request("/question/" + id, "DELETE"), user);
-		return is_ok_response(resp);
+		Response resp = this.send(new Request("/question/" + id, "DELETE"), user);
+		return isOK(resp);
 	}
 
 	public List<Question> getSurvey() throws IOException, ServerErrorException {
-		return get_question_list("/survey");
+		return getQuestionList("/survey");
 	}
 
 	public int checkSurvey(List<Integer> list) throws IOException, ServerErrorException {
@@ -141,7 +141,7 @@ public class DAO extends AbstractDAO {
 		}
 		JSONObject json = new JSONObject();
 		json.put("answers", answers);
-		Response resp = this.send_request(new Request("/survey", "POST", json), user);
+		Response resp = this.send(new Request("/survey", "POST", json), user);
 		if (resp.getStatus() != 200) {
 			return 0;
 		}
@@ -152,7 +152,7 @@ public class DAO extends AbstractDAO {
 	public static void main(String[] args) {
 		DAO dao = DAO.getInstance();
 		try {
-			System.out.println(dao.healt_check());
+			System.out.println(dao.checkHealt());
 			System.out.println(dao.authenticate("xyz", "xyz"));
 
 			System.out.println(dao.getQuestions().size());

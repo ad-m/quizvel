@@ -28,7 +28,7 @@ public class UpdateQuestionAction extends AbstractUpdateObjectAction<Question> {
 	}
 
 	@Override
-	public QuestionDialog get_dialog(JFrame frame, Question obj) {
+	public QuestionDialog getDialog(JFrame frame, Question obj) {
 		return new QuestionDialog(frame, obj);
 	}
 

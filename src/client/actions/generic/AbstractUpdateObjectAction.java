@@ -31,7 +31,7 @@ public abstract class AbstractUpdateObjectAction<T extends DataModel> implements
 			return;
 		}
 
-		WindowObject<T> vv = get_dialog(frame, list.getSelectedValue());
+		WindowObject<T> vv = getDialog(frame, list.getSelectedValue());
 		if (vv.getStatus()) {
 			vv.updateObject();
 			updatePerformed(list.getSelectedIndex(), vv.getObject());
@@ -42,6 +42,6 @@ public abstract class AbstractUpdateObjectAction<T extends DataModel> implements
 		model.set(index, obj);
 	}
 
-	abstract public WindowObject<T> get_dialog(JFrame frame, T obj);
+	abstract public WindowObject<T> getDialog(JFrame frame, T obj);
 
 }

@@ -17,11 +17,11 @@ public class QuestionGetView extends AbstractAdminJSONView {
 
 	@Override
 	public JSONObject getJSON(Request request, User user) throws JSONException {
-		int id = QuestionGetView.get_id(request.url);
+		int id = QuestionGetView.getID(request.url);
 		return QuestionStorage.getInstance().get(id).toJSON();
 	}
 
-	private static Integer get_id(String url) {
+	private static Integer getID(String url) {
 		Matcher matcher = RE_PARSE_URL.matcher(url);
 		matcher.find();
 		return Integer.valueOf(matcher.group(1));
@@ -32,7 +32,7 @@ public class QuestionGetView extends AbstractAdminJSONView {
 		QuestionStorage.getInstance().add(question);
 		assert new QuestionGetView().getJSON(new Request("questions/0", "GET"), null).toString()
 				.equals(question.toJSON().toString());
-		assert QuestionGetView.get_id("questions/123") == 123;
+		assert QuestionGetView.getID("questions/123") == 123;
 	}
 
 }

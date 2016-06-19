@@ -1,3 +1,4 @@
+package main;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -32,18 +33,14 @@ import server.view.user.UserRegisterView;
  */
 public class Server {
 	public static final int PORT = Config.LISTING_PORT;
-	private ServerSocket server;
-
-	public Server() {
-	}
 
 	/**
 	 * uruchomienie serwera
 	 * 
 	 * @throws IOException
 	 */
-	void runServer() throws IOException {
-		server = new ServerSocket(Server.PORT);
+	private void runServer() throws IOException {
+		ServerSocket server = new ServerSocket(Server.PORT);
 
 		Router router = Router.getInstance();
 		router.add(new RegexpRoute(Method.GET, "^/$", new OKView()));

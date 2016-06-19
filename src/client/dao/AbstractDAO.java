@@ -17,11 +17,7 @@ import core.http.Response;
  */
 public class AbstractDAO {
 
-	public AbstractDAO() {
-		super();
-	}
-
-	public Response send_request(Request request, DAOUser user)
+	public Response send(Request request, DAOUser user)
 			throws UnknownHostException, IOException, ServerErrorException {
 		Response response = null;
 		try (HTTPStream http = new HTTPStream(new Socket(Config.SERVER_HOST, Config.SERVER_PORT))) {
@@ -37,8 +33,8 @@ public class AbstractDAO {
 		return response;
 	}
 
-	public Response send_request(Request request) throws UnknownHostException, IOException, ServerErrorException {
-		return send_request(request, null);
+	public Response send(Request request) throws UnknownHostException, IOException, ServerErrorException {
+		return send(request, null);
 	}
 
 }

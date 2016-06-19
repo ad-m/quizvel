@@ -59,16 +59,13 @@ public class UserStorage extends AbstractStoreData<User> {
 	 */
 	public User authenticate(String username, String password) {
 		User user = findByUserName(username);
-
-		if (user != null && user.checkPassword(password) == true)
-			return user;
-		return null;
+		return (user != null && user.checkPassword(password)) ? user : null;
 	}
 
 	public static void main(String[] args) {
 		UserStorage store = new UserStorage();
 		User u1 = new User("Alice", "pass");
-		assert store.add(u1) == true;
+		assert store.add(u1);
 		assert u1.equals(store.findByUserName("Alice"));
 		assert Arrays.equals(new User[] { u1 }, store.toArray());
 		assert store.size() == 1;

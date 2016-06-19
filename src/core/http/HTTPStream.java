@@ -13,11 +13,11 @@ import java.net.Socket;
  *
  */
 public class HTTPStream implements Closeable {
-	Socket socket;
-	InputStream in;
-	OutputStream out;
-	RequestParser request_parser;
-	ResponseParser response_parser;
+	private Socket socket;
+	private InputStream in;
+	private OutputStream out;
+	private RequestParser request_parser;
+	private ResponseParser response_parser;
 
 	public HTTPStream(Socket socket) throws IOException {
 		this.socket = socket;
