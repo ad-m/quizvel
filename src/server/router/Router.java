@@ -36,7 +36,7 @@ public class Router {
 
 	public AbstractView find(Request request) {
 		for (Route r : list) {
-			if (r.match(request) == true) {
+			if (r.match(request)) {
 				return r.getView();
 			}
 		}

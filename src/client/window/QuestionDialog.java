@@ -27,9 +27,7 @@ public class QuestionDialog extends JDialog implements WindowObject<Question> {
 
 	private static final long serialVersionUID = -1626032456115322781L;
 	private JFrame frame;
-	private JTextField textField = new JTextField();;
-	private JScrollPane scrollPane;
-	private JButton btnAddChoice;
+	private JTextField textField = new JTextField();
 	private JList<Choice> list;
 	private Question object;
 	private ListModel<Choice> model;
@@ -77,7 +75,7 @@ public class QuestionDialog extends JDialog implements WindowObject<Question> {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 
-		scrollPane = new JScrollPane(list);
+		JScrollPane scrollPane = new JScrollPane(list);
 		scrollPane.setBounds(5, 39, 408, 131);
 		getContentPane().add(scrollPane);
 
@@ -85,7 +83,7 @@ public class QuestionDialog extends JDialog implements WindowObject<Question> {
 		scrollPane.setSize(400, 120);
 		scrollPane.setLocation(5, 70);
 
-		btnAddChoice = new JButton("Add choice");
+		JButton btnAddChoice = new JButton("Add choice");
 		btnAddChoice.setBounds(40, 194, 150, 25);
 		btnAddChoice.addActionListener(new AddChoiceAction(frame, model));
 		getContentPane().add(btnAddChoice);

@@ -13,12 +13,12 @@ public class User extends DataModel {
 	private byte[] hash;
 	private boolean admin;
 
-	public String getUsername() {
-		return username;
+	public User(String username) {
+		this.username = username;
 	}
 
-	public User(String username) {
-
+	public String getUsername() {
+		return username;
 	}
 
 	public User(JSONObject obj) {

@@ -52,7 +52,6 @@ public class RequestParser {
 			String body = parseBody(headers);
 			request = new Request(url, method, body, headers, proto);
 		}
-		;
 		return request;
 	}
 

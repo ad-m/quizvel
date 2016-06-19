@@ -86,7 +86,7 @@ public class Response implements HTTPObject {
 	/**
 	 * @return etykieta żadania HTTP
 	 */
-	private String status_label() {
+	private String getStatusLabel() {
 		if (this.status == 200) {
 			return "OK";
 		} else if (this.status == 401) {
@@ -116,7 +116,7 @@ public class Response implements HTTPObject {
 		content.append(" ");
 		content.append(status);
 		content.append(" ");
-		content.append(this.status_label());
+		content.append(this.getStatusLabel());
 		content.append("\n");
 		for (Map.Entry<String, String> entry : this.headers.entrySet()) {
 			content.append(entry.getKey());
