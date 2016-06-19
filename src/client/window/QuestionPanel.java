@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -24,14 +23,12 @@ public class QuestionPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5500638339607489494L;
-	private JFrame frame;
 	private Question question;
 	private JPanel panel;
 	private ButtonGroup group;
 
-	public QuestionPanel(JFrame frame, Question question) {
+	public QuestionPanel(Question question) {
 		super();
-		this.frame = frame;
 		this.question = question;
 		this.panel = new JPanel();
 		this.group = new ButtonGroup();

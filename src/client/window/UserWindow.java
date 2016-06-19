@@ -68,7 +68,7 @@ public class UserWindow {
 			question_list = DAO.getInstance().getSurvey();
 			int i = 0;
 			for (Question question : question_list) {
-				QuestionPanel question_panel = new QuestionPanel(frame, question);
+				QuestionPanel question_panel = new QuestionPanel(question);
 				tabbedPane.addTab("Question no. " + (i++), question_panel);
 				result.add(question_panel);
 			}
