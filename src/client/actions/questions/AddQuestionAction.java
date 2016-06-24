@@ -19,7 +19,7 @@ import core.model.Question;
  * @author adas
  *
  */
-public final class AddQuestionAction extends AbstractAddObjectAction<Question> {
+public class AddQuestionAction extends AbstractAddObjectAction<Question> {
 
 	public AddQuestionAction(JFrame frame, ListModel<Question> list) {
 		super(frame, list);

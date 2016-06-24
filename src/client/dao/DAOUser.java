@@ -17,10 +17,20 @@ public class DAOUser {
 		this.password = password;
 	}
 
+	/**
+	 * Metoda odpowiedzialna za zwrócenie zapisanej nazwy użytkownika
+	 * 
+	 * @return nazwa użytkownika
+	 */
 	public String getUsername() {
 		return username;
 	}
 
+	/**
+	 * Metoda odpowiedzialna za zwrócenie zapisanego hasła
+	 * 
+	 * @return hasło
+	 */
 	public String getPassword() {
 		return password;
 	}

@@ -48,6 +48,9 @@ public class AdminWindow {
 		initialize();
 	}
 
+	/**
+	 * Metoda odpowiedzialna za wczytanie listy pytań z serwera do okna.
+	 */
 	private void loadQuestions() {
 		try {
 			model.addAll(DAO.getInstance().getQuestions());

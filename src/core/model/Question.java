@@ -70,6 +70,9 @@ public class Question extends DataModel implements Iterable<Choice> {
 		this.correct_id = correct;
 	}
 
+	/**
+	 * @return poprawna odpowiedź
+	 */
 	public Choice getCorrect() {
 		if (this.choices.size() != 0 && this.choices.size() > this.correct_id && this.correct_id != -1) {
 			return this.choices.get(this.correct_id);
@@ -77,10 +80,24 @@ public class Question extends DataModel implements Iterable<Choice> {
 		return null;
 	}
 
+	/**
+	 * Metoda odpowiedzialna za weryfikacje odpowiedzi co do poprawności.
+	 * 
+	 * @param choice
+	 *            identyfikator wybranej odpowiedzi
+	 * @return stan poprawnośści
+	 */
 	public boolean validate(int choice) {
 		return choice == this.correct_id;
 	}
 
+	/**
+	 * Metoda odpowiedzialna za weryfikacjie odpowiedzi co do poprawności
+	 * 
+	 * @param choice
+	 *            odpowiedź wybrana
+	 * @return stan poprawności
+	 */
 	public boolean validate(Choice choice) {
 		return this.getCorrect().equals(choice);
 	}

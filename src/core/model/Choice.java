@@ -48,7 +48,7 @@ public class Choice extends DataModel {
 		assert new Choice(json).equals(obj);
 	}
 
-	public Choice clone() throws CloneNotSupportedException {
+	public Choice clone() {
 		return new Choice(this.toJSON());
 	}
 }

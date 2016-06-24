@@ -14,7 +14,7 @@ Protokół aplikacji Quizvel bazuje na szeroko stosownym i opisanym w literaturz
 
 Protokół HTTP to protokół poziomu aplikacji dla hipermedialnych systemów informatycznych. W obu wersjach jest to protokół bezstanowy, tzn. ani serwer (ani klient) nie przechowuje informacji o tym, jakie były wcześniej zapytania pomiędzy określonym serwerem i klientem oraz nie posiada stanu wewnętrznego. Wykorzystuje wyłącznie protokół TCP do komunikacji klient-serwer. W najczęstszej konfiguracji działa na porcie 80. 
 
-Protokół HTTP jest protokołem żądania & odpowiedzi. Klient wysyła żądanie do serwera w postaci metody żądania, URI i wersji protokołu, a następnie komunikatu podobnego do wiadomości MIME  (ang. *Multipurpose Internet Mail Extensions*) zawierającego modyfikatory żądania, metainformacje o docelowym serwerze i  kliencie (dalej: *nagłówki*, ang. *headers*) oraz ewentualnie - oddzielone pustym wierszem – zawartość ciała (ang.*body*). W odpowiedzi otrzymuje kod statusu odpowiedzi, metainformacje i ciało oddzielone poprzez pusty wiersz.
+Protokół HTTP jest protokołem żądania i odpowiedzi. Klient wysyła żądanie do serwera w postaci linii żądania zawierającej informacje metody żądania, URI i wersji protokołu, a następnie komunikatu podobnego do wiadomości MIME  (ang. *Multipurpose Internet Mail Extensions*) zawierającego modyfikatory żądania, metainformacje o docelowym serwerze i  kliencie (dalej: *nagłówki*, ang. *headers*) oraz ewentualnie - oddzielone pustym wierszem – zawartość ciała (ang.*body*). W odpowiedzi otrzymuje kod statusu odpowiedzi, metainformacje i ciało oddzielone poprzez pusty wiersz.
 
 W przypadku mojego protokołu przyjąłem częściową implementacje protokołu HTTP, ale kompatybilną z popularnymi klientami tego protokołu, a ponadto zakładam, że ciało ma zawsze postać struktury JSON.
 
@@ -28,7 +28,7 @@ gdzie:
    POST, PUT, GET lub DELETE,   
  - ```/sciezka``` – adres punktu wejścia dla danego
    żądania (ang. entry point),
- - ```HTTP/1.1``` – wersja protokołu HTT,
+ - ```HTTP/1.1``` – wersja protokołu HTTP,
 
 W przypadku zamiaru przekazania ciała żądania żądania należy wykorzystać nagłówek `Content-Length` dla określenia rozmiaru ciala, a następnie po przesłaniu nagłówków przesłać dodatkowy enter i przesłać ciało w formie tekstowej.
 
@@ -225,6 +225,9 @@ Punkt odpwoeidzialny za przesłanie listy użytkowników. Wykorzystuje UserListV
 Zwraca informacje dodatkowe w postaci słownika o kluczach:
 
  - ```users``` (łańcuch znaków) – lista obiektów typu „User”.
+
+#### GET — ^/user/~current 
+Punkt odpwoeidzialny za przesłanie danych na temat aktualnie zalogowanego użytkownika. Wykorzystuje UserListView. Zwraca informacje dodatkowe w postaci obiektu typu „User”.
 
 #### GET — ^/~save
 Punkt odpowiedzialny za zapisanie baz danych do pliku. Ma charakter administracyjny dla zapewnienia trwałości gromadzonych danych przez aplikacje. Wykorzystuje SaveJSONView. 

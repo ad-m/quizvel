@@ -11,9 +11,7 @@ import org.json.JSONObject;
 public interface HTTPObject {
 
 	/**
-	 * ciało żądania / odpowiedzi
-	 * 
-	 * @return
+	 * @return ciało żądania / odpowiedzi
 	 */
 	String getBody();
 

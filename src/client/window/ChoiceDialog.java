@@ -79,23 +79,43 @@ public class ChoiceDialog extends JDialog implements WindowObject<Choice> {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see client.window.WindowObject#getObject()
+	 */
 	@Override
 	public Choice getObject() {
 		return this.object;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see client.window.WindowObject#updateObject()
+	 */
 	@Override
 	public void updateObject() {
 		this.status = true;
 		this.object.setText(txtText.getText());
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see client.window.WindowObject#setStatus(boolean)
+	 */
 	@Override
 	public void setStatus(boolean s) {
 		this.status = s;
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see client.window.WindowObject#getStatus()
+	 */
 	@Override
 	public boolean getStatus() {
 		return this.status;

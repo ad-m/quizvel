@@ -39,14 +39,15 @@ public class SurveyCheckAction implements ActionListener {
 		}
 	}
 
+	/**
+	 * metoda odpowiedzialna za komunikat wyniku ankietu.
+	 * 
+	 * @param result
+	 *            liczba punktów
+	 * @return wiadomość tekstowa
+	 */
 	private String getSuccessMessage(int result) {
-		String rank;
-		if (result > 3) {
-			rank = "bdb";
-		} else {
-			rank = "ndst";
-		}
-		return "Your result is " + result + " points. Your rank is " + rank;
+		return "Your result is " + result + " points. Your rank is " + (result > 3 ? "bdb" : "ndst");
 	}
 
 	private List<Integer> getAnswers() {

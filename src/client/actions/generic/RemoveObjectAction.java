@@ -9,6 +9,13 @@ import javax.swing.JOptionPane;
 
 import client.window.ListModel;
 
+/**
+ * Klasa odpowiedzialna za usuwanie zaznaczonego w ``JList`` obiektu z
+ * ``ListModel``.
+ * 
+ * @author adas
+ *
+ */
 public class RemoveObjectAction implements ActionListener {
 
 	protected JList<?> list;
