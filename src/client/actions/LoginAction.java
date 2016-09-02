@@ -78,9 +78,13 @@ public class LoginAction implements ActionListener {
 	private void showUserWindow(User user) {
 		JOptionPane.showMessageDialog(frame, getHelloMessage(user), "Welcome", JOptionPane.INFORMATION_MESSAGE);
 
-		if (user.isAdmin() && JOptionPane.showConfirmDialog(frame, "Do you want go to admin section?", "Admin section",
-				JOptionPane.YES_NO_OPTION) == 0) {
-			new AdminWindow();
+		if (user.isAdmin()) {
+			if (JOptionPane.showConfirmDialog(frame, "Do you want go to admin section?", "Admin section",
+					JOptionPane.YES_NO_OPTION) == 0) {
+				new AdminWindow();
+			} else {
+				new UserWindow();
+			}
 		} else {
 			askSecret(user);
 		}
